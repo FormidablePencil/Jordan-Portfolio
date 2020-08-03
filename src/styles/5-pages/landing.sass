@@ -1,0 +1,30 @@
+
+.landing-page
+  background-image: url('../../assets/images/bgJordan.jpg')
+  background-attachment: fixed
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: 50% 30%
+
+  .container
+    width: 80vw
+    margin-left: auto
+    margin-right: auto
+
+  @import '../3-basic/typography'
+
+  .intro, .demo-tech, .demo-projects, .bio, .contacts
+    height: 100vh
+    width: 100vw
+    &:not(:first-child)
+      height: 150vh
+
+  .demo-tech
+    $zoomLvl1: scale(1)
+    $zoomLvl2: scale(.8)
+
+    .zoomLvl1
+      transform: $zoomLvl1
+
+    .zoomLvl2
+      transform: $zoomLvl2
