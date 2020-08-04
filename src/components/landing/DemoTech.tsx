@@ -1,7 +1,7 @@
 import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { images } from '../../assets/constants/staticData';
-import Navbar from '../Navbar';
+import LandingContainer from '../reusables/LandingContainer';
 
 function DemoTech() {
 
@@ -19,8 +19,7 @@ function DemoTech() {
 
   return (
     <div className="demo-tech flex">
-      <Navbar />
-      <div className="container flex justify-evenly align-center">
+      <LandingContainer>
         {images.map((image, index) =>
           <LazyLoadImage
             className={calcImgZoom(index)}
@@ -30,7 +29,7 @@ function DemoTech() {
             effect='blur'
             width={image.width} />
         )}
-      </div>
+      </LandingContainer>
     </div>
   )
 }

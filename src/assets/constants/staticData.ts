@@ -24,3 +24,16 @@ export const images = [
     width: '220px',
   },
 ] // add more tech to showcase because the aim is to show capability of many technologies, which is neccessary in this day in age.
+
+export const profile = {
+  src: require('../images/jordanSheets.jpg'),
+  height: '400px',
+  width: '300px',
+  objectPosition: '65% 50%',
+  filter: 'rgba(142, 173, 170, .4)',
+}
+
+export const contacts = {
+  email: '@gmail',
+  github: 'www.github',
+}

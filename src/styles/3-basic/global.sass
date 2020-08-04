@@ -3,3 +3,19 @@ html
 
 button
   border: none
+  display: flex
+  justify-content: center
+  align-items: center
+  background: $secondaryColor
+  @extend %btnStandard
+
+input, textarea
+  border: $borderInput
+  border-radius: $borderRadiusSmall
+  font-family: $fontFamilySourceSansPro
+  &:focus
+    outline: none
+    box-shadow: 0 0 1pt 2pt $primaryColor
+
+input
+  height: 35px

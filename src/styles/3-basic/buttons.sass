@@ -2,12 +2,22 @@
   border-radius: .3em
   min-width: 10em
   height: 3em
-  margin: 0em 1em 0em 1em
+  &:hover
+    background: lighten( $secondaryColor, 10% )
 
-.btn-standard
-  background: $secondaryColor
-  @extend %btnStandard
-
-.resume-btn
+.action-btn
   background: $primaryColor
+  border: 1px solid #3B8E84
   @extend %btnStandard
+  &:hover
+    background: lighten( $primaryColor, 10% )
+  p
+    font-size: $fontSizeMed
+    margin: 0 $spacing-2 0 $spacing-2
+
+.navbar-tab
+  p
+    display: inline-block
+    color: #3C3C3C
+    font-size: 1.5em
+    font-family: $fontFamilySourceSansPro-bold

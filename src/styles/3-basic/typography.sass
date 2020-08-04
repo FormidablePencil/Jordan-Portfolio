@@ -6,15 +6,25 @@
   src: url('../../assets/fonts/SourceSansPro-SemiBold.ttf')
 
 p
-  font-family: SourceSansPro
+  font-family: $fontFamilySourceSansPro
+  font-size: $fontSizeReg
+
+.lessDark-txt
+  color: $lessDarkTextColor
+.dark-txt
+  color: $darkTextColor
+.darker-txt
+  color: $darkerTextColor
+.secondary-txt
+  color: $secondaryColor
 
 .landing-page
   p
     color: white
   .large
-    text-align: center
-    width: 800px
-    font-size: 2em
+    font-size: $fontSizeMed
+  .bio-paragraph
+    width: 600px
 
 .project-library-page
   p

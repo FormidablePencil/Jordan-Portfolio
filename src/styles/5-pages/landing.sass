@@ -1,10 +1,5 @@
 
 .landing-page
-  background-image: url('../../assets/images/bgJordan.jpg')
-  background-attachment: fixed
-  background-size: cover
-  background-repeat: no-repeat
-  background-position: 50% 30%
 
   .container
     width: 80vw
@@ -16,8 +11,68 @@
   .intro, .demo-tech, .demo-projects, .bio, .contacts
     height: 100vh
     width: 100vw
-    &:not(:first-child)
+    &:not(:first-child):not(:last-child)
       height: 150vh
+
+  .intro
+    background-color: $themeColorDarkest
+    .centered-paragraph
+      width: 600px
+      text-align: center
+
+  .demo-tech
+    background-color: $themeColorLight
+
+  .demo-projects
+    background-color: $themeColor
+
+  .bio
+    background-color: $themeColorLightest
+    .profile-image-container
+      position: relative
+      .img-filter
+        border-radius: $borderRadiusLarge
+        box-shadow: $boxShadowPrimary
+        position: absolute
+        z-index: 1
+        top: 0
+      .profile-image
+        border-radius: $borderRadiusLarge
+        box-shadow: $boxShadowPrimary
+        object-fit: cover
+        object-position: 50% 50%
+
+  .contacts
+    background-color: $themeColorDark
+    .contact-box
+      width: 70%
+      min-height: 16em
+      background: $contactsBoxBgColor
+      box-shadow: $boxShadowPrimary
+      border-radius: $borderRadiusSmall
+      padding: 40px
+      input, textarea
+        width: 100%
+        font-size: $fontSizeReg
+        @extend .pl-1
+        &:not(:last-child)
+          margin-bottom: 8px
+      textarea
+        margin-left: -5px
+        height: 100px
+      .direct-message
+      .or-statement
+      .redirect-mail
+        border: $borderInput
+        border-radius: $borderRadiusSmall
+        background: white
+        // height: 100%
+
+        margin-bottom: 47px
+        @extend .pl-1
+        @extend .pr-1
+        .btn-container
+          height: 4em
 
   .demo-tech
     $zoomLvl1: scale(1)
