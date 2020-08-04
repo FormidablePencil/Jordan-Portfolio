@@ -2,8 +2,12 @@ import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { images } from '../../assets/constants/staticData';
 import LandingContainer from '../reusables/LandingContainer';
+import TabNav from '../reusables/TabNav';
 
-function DemoTech() {
+const DemoTech = ({ tabFixed, tabFixedTopOffset, secitonRef }) => {
+  // const demoTechRef = useRef(null)
+  // const [tabFixed, setTabFixed] = useState(false)
+  // const tabFixedTopOffset = 48
 
   const calcImgZoom = (index) => {
     if (images.length === 3) {
@@ -11,14 +15,21 @@ function DemoTech() {
         return 'zoomLvl2'
       } else return 'zoomLvl1'
     } else if (images.length === 4) {
-      if (index === 0 || index === 3) { //Make a function
+      if (index === 0 || index === 3) {
         return 'zoomLvl2'
       } else return 'zoomLvl1'
     } else return 'zoomLvl1'
   }
 
   return (
-    <div className="demo-tech flex">
+    <TabNav
+      tabBarClassName='customTabBar'
+      tabClassName='customTab'
+      className='demo-tech flex'
+      secitonRef={secitonRef}
+      tabFixed={tabFixed}
+      tabFixedTopOffset={tabFixedTopOffset}
+    >
       <LandingContainer>
         {images.map((image, index) =>
           <LazyLoadImage
@@ -30,7 +41,7 @@ function DemoTech() {
             width={image.width} />
         )}
       </LandingContainer>
-    </div>
+    </TabNav>
   )
 }
 

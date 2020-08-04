@@ -1,6 +1,8 @@
 
 .landing-page
 
+  @import '../5-modules/navTabs'
+
   .container
     width: 80vw
     margin-left: auto
@@ -21,10 +23,21 @@
       text-align: center
 
   .demo-tech
+    $zoomLvl1: scale(1)
+    $zoomLvl2: scale(.8)
     background-color: $themeColorLight
+    display: flex
+    flex-direction: column
+    justify-content: center
+    position: relative
+    .zoomLvl1
+      transform: $zoomLvl1
+    .zoomLvl2
+      transform: $zoomLvl2
 
   .demo-projects
     background-color: $themeColor
+    position: relative
 
   .bio
     background-color: $themeColorLightest
@@ -73,13 +86,3 @@
         @extend .pr-1
         .btn-container
           height: 4em
-
-  .demo-tech
-    $zoomLvl1: scale(1)
-    $zoomLvl2: scale(.8)
-
-    .zoomLvl1
-      transform: $zoomLvl1
-
-    .zoomLvl2
-      transform: $zoomLvl2

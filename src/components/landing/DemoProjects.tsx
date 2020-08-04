@@ -1,13 +1,21 @@
 import React from 'react'
 import LandingContainer from '../reusables/LandingContainer'
+import TabNav from '../reusables/TabNav'
 
-function DemoProjects() {
+function DemoProjects({ tabFixed, tabFixedTopOffset, secitonRef }) {
   return (
-    <div className="demo-projects flex">
+    <TabNav
+      className="demo-projects flex"
+      tabBarClassName='customTabBar'
+      tabClassName='customTab'
+      secitonRef={secitonRef}
+      tabFixed={tabFixed}
+      tabFixedTopOffset={tabFixedTopOffset}
+    >
       <LandingContainer>
         <p>demo projects</p>
       </LandingContainer>
-    </div>
+    </TabNav>
   )
 }
 

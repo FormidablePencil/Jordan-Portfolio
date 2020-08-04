@@ -3,7 +3,7 @@ import LandingContainer from '../reusables/LandingContainer'
 import { profile } from '../../assets/constants/staticData'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-function Bio() {
+function Bio({tabFixed, tabFixedTopOffset, secitonRef}) {
   const imgFilterStyle = {
     height: profile.height,
     width: profile.width,
