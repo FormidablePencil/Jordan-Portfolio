@@ -1,0 +1,32 @@
+.demo-tech
+  $zoomLvl1: scale(1)
+  $zoomLvl2: scale(.8)
+  display: flex
+  flex-direction: column
+  justify-content: center
+  position: relative
+  .video-player-container
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+  
+  .technologies-icons-container
+    z-index: 1
+    position: absolute
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .tech-icon
+      // transform: scale(1)
+      // transition: .4s
+      // &:hover
+      //   transform: scale(1.2)
+      //   // animation-duration: 2s
+
+    .zoomLvl1
+      transform: $zoomLvl1
+    .zoomLvl2
+      transform: $zoomLvl2

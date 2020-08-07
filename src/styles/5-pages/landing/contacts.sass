@@ -1,0 +1,33 @@
+.contacts
+  // background: linear-gradient(green, yellow)
+  background-color: $themeColorDark
+  position: relative
+  .contact-box
+    width: 70%
+    min-height: 16em
+    background: $contactsBoxBgColor
+    box-shadow: $boxShadowPrimary
+    border-radius: $borderRadiusSmall
+    padding: 40px
+    input, textarea
+      width: 100%
+      font-size: $fontSizeReg
+      @extend .pl-1
+      &:not(:last-child)
+        margin-bottom: 8px
+    textarea
+      margin-left: -5px
+      height: 100px
+    .direct-message
+    .or-statement
+    .redirect-mail
+      border: $borderInput
+      border-radius: $borderRadiusSmall
+      background: white
+      // height: 100%
+
+      margin-bottom: 47px
+      @extend .pl-1
+      @extend .pr-1
+      .btn-container
+        height: 4em

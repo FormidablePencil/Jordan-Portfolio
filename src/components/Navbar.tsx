@@ -1,29 +1,25 @@
 import React from 'react'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { tabTitles } from '../assets/constants/staticData'
+
+export const getNavTabPosition = (index) => {
+  if (index === 0) return 100
+  else return 50 * index * 3 + 44
+}
 
 function Navbar() {
   return (
-    <div className='navbar flex'>
-      <div className="container flex align-center justify-center">
-        <div className="navTabs flex-1 flex">
-          <div className="bgColor">
-            <button className="navbar-tab horizontal-margins"><p>Home</p></button>
-          </div>
-          <div className="bgColor">
-            <button className="navbar-tab horizontal-margins"><p>Technologies</p></button>
-          </div>
-          <div className="bgColor">
-            <button className="navbar-tab horizontal-margins"><p>Projects</p></button>
-          </div>
-          <div className="bgColor">
-            <button className="navbar-tab horizontal-margins"><p>Bio</p></button>
-          </div>
-          <div className="bgColor">
-            <button className="navbar-tab horizontal-margins"><p>Contacts</p></button>
-          </div>
+    <div className='navbar'>
+      <div className="navbar-inner-container">
+        <div className="navTabs">
+          {tabTitles.map((title, index) =>
+
+            index !== 0 &&
+            <AnchorLink className='navbar-btn' style={{ left: getNavTabPosition(index) }} href={`#${title}`}>{title}</AnchorLink>
+          )}
         </div>
-        <div className="navLinks flex justify-end">
-          <button className="action-btn horizontal-margins"><p>Resume</p></button>
-          <button className="navbar-tab horizontal-margins"><p>Project Library</p></button>
+        <div className="additional-nav-tabs">
+          <a href='/' className='navbar-btn portfolio-btn' style={{right: '50px'}}>Porfolio</a>
         </div>
       </div>
     </div>

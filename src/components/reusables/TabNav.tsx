@@ -1,20 +1,22 @@
 import React from 'react'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const TabNav = ({ children,
   className, tabClassName, tabBarClassName,
-  tabFixed, tabFixedTopOffset, secitonRef }) => {
+  tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) => {
 
   return (
-    <div ref={secitonRef} className={className}>
+    <div ref={sectionRef} className={className}>
       <div
         style={{
           position: tabFixed ? 'fixed' : 'absolute',
           top: tabFixed ? `${tabFixedTopOffset}px` : '0px',
         }}
-        className={`tab-section ${tabBarClassName}`}>
+        className='customTabBar'>
         <div className="container">
-          <div
-            className={`tab ${tabClassName}`} />
+          <div className={`customTab`}>
+            <AnchorLink className='anchorLink' href={`#${tabTitle}`}>{tabTitle}</AnchorLink>
+          </div>
         </div>
       </div>
       {children}

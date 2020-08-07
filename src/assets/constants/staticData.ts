@@ -1,25 +1,30 @@
-export const images = [
+
+export const demoTechContent = [
   {
     title: 'Adobe Premiere Pro',
     src: require('../images/pr_cc_app_RGB.svg'),
+    video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
     height: '220px',
     width: '220px',
   },
   {
     title: 'Adobe Photoshop',
     src: require('../images/photoshop-mobile.svg'),
+    video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
     height: '220px',
     width: '220px',
   },
   {
     title: 'Adobe Photoshop',
     src: require('../images/photoshop-mobile.svg'),
+    video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
     height: '220px',
     width: '220px',
   },
   {
     title: 'Adobe Photoshop',
     src: require('../images/photoshop-mobile.svg'),
+    video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
     height: '220px',
     width: '220px',
   },
@@ -34,6 +39,9 @@ export const profile = {
 }
 
 export const contacts = {
-  email: '@gmail',
-  github: 'www.github',
+  email: '@gmail', github: 'www.github',
 }
+
+export const tabTitles = [
+  'Home', 'Technologies', 'Projects', 'Bio', 'Contacts'
+]

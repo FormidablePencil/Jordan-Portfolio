@@ -5,58 +5,87 @@ import DemoProjects from '../components/landing/DemoProjects'
 import Bio from '../components/landing/Bio'
 import Contacts from '../components/landing/Contacts'
 import Navbar from '../components/Navbar'
+import { tabTitles } from '../assets/constants/staticData'
 
 function Landing() {
-  const [tabFixed, setTabFixed] = useState({ demoTech: false, demoProjects: false })
+  const [tabFixed, setTabFixed] = useState({
+    demoTech: false,
+    demoProjects: false,
+    intro: false,
+    bio: false,
+    contacts: false
+  })
+  const reff = useRef({
+    demoTech: false,
+    demoProjects: false,
+    intro: false,
+    bio: false,
+    contacts: false
+  })
+  const introRef = useRef(null)
   const demoTechRef = useRef(null)
   const demoProjectsRef = useRef(null)
   const bioRef = useRef(null)
-  const tabFixedTopOffset = 48 //send down
+  const contactsRef = useRef(null)
+
+  const tabFixedTopOffset = 42 //send down
 
   useEffect(() => {
-    window.addEventListener('scroll', () => onScroll())
-    return () => window.removeEventListener('scroll', () => onScroll())
+    document.addEventListener('scroll', onScroll)
+    return () => document.removeEventListener('scroll', onScroll)
+    // eslint-disable-next-line 
   }, [])
 
   const onScroll = () => {
-    console.log(
-      demoTechRef.current.getBoundingClientRect().top,
-      // demoProjectsRef.current.getBoundingClientRect().top,
-      // bioRef.current.getBoundingClientRect().top,
-    )
+    toggleTabPositionOnScroll(demoTechRef, 'demoTech')
+    toggleTabPositionOnScroll(demoProjectsRef, 'demoProjects')
+    toggleTabPositionOnScroll(bioRef, 'bio')
+    toggleTabPositionOnScroll(contactsRef, 'contacts')
+  }
 
-    const toggleTabPositionOnScroll = (ref, variable) => {
-      //@ts-ignore
-      if (ref.current.getBoundingClientRect().top < 50) {
+  const toggleTabPositionOnScroll = (ref, variable) => { 
+    if (ref.current.getBoundingClientRect().top < tabFixedTopOffset) {
+      if (reff.current[variable] !== true) {// since changes done to useState doesn't seem to reflect in this funciton and just return the same value as before I implemented a little hack with ref to track when useState was changed by changing ref along with it. I didn't want setState to fire everytime and destroy the proformance of the app.
+        reff.current = ({ ...reff.current, [variable]: true })
         setTabFixed(prev => ({ ...prev, [variable]: true }))
-      } else {
+      }
+    } else {
+      if (reff.current[variable] !== false) {
+        reff.current = ({ ...reff.current, [variable]: false })
         setTabFixed(prev => ({ ...prev, [variable]: false }))
       }
     }
-
-    toggleTabPositionOnScroll(demoTechRef, 'demoTech')
-    toggleTabPositionOnScroll(demoProjectsRef, 'demoProjects')
-    // toggleTabPositionOnScroll(bioRef)
   }
 
 
   return (
     <div className='landing-page'>
       <Navbar />
-      <Intro />
+      <Intro
+        tabTitle={tabTitles[0]}
+        sectionRef={introRef}
+        tabFixed={true}
+        tabFixedTopOffset={tabFixedTopOffset} />
       <DemoTech
-        secitonRef={demoTechRef}
+        tabTitle={tabTitles[1]}
+        sectionRef={demoTechRef}
         tabFixed={tabFixed.demoTech}
         tabFixedTopOffset={tabFixedTopOffset} />
       <DemoProjects
-        secitonRef={demoProjectsRef}
+        tabTitle={tabTitles[2]}
+        sectionRef={demoProjectsRef}
         tabFixed={tabFixed.demoProjects}
         tabFixedTopOffset={tabFixedTopOffset} />
-      {/* <Bio
-        secitonRef={bioRef}
-        tabFixed={tabFixed}
-        tabFixedTopOffset={tabFixedTopOffset} /> */}
-      <Contacts />
+      <Bio
+        tabTitle={tabTitles[3]}
+        sectionRef={bioRef}
+        tabFixed={tabFixed.bio}
+        tabFixedTopOffset={tabFixedTopOffset} />
+      <Contacts
+        tabTitle={tabTitles[4]}
+        sectionRef={contactsRef}
+        tabFixed={tabFixed.contacts}
+        tabFixedTopOffset={tabFixedTopOffset} />
     </div>
   )
 }

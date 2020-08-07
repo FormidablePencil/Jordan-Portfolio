@@ -1,12 +1,21 @@
 import React from 'react'
 import LandingContainer from '../reusables/LandingContainer'
 import { contacts } from '../../assets/constants/staticData'
+import TabNav from '../reusables/TabNav'
 
-function Contacts() {
+function Contacts({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) {
 
   return (
-    <div className="contacts flex">
-      <LandingContainer>
+    <TabNav
+      className="contacts flex"
+      tabBarClassName='customTabBar'
+      tabClassName='customTab'
+      sectionRef={sectionRef} tabTitle={tabTitle}
+      tabFixed={tabFixed}
+      tabFixedTopOffset={tabFixedTopOffset}
+    >
+      <LandingContainer        anchorId={tabTitle}
+>
         <div className="contact-box flex">
           <div className="direct-message flex-2 flex col align-end justify-between">
             <input placeholder='Name' type="text" />
@@ -32,7 +41,7 @@ function Contacts() {
           </div>
         </div>
       </LandingContainer>
-    </div >
+    </TabNav>
   )
 }
 
