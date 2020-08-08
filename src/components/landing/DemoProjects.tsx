@@ -27,7 +27,7 @@ function DemoProjects({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) {
       tabFixedTopOffset={tabFixedTopOffset}
     >
       <div className='demo-proj-container'>
-        <Tabs className='tabs-container' value={index} onChange={handleChange}>
+        <Tabs id={tabTitle} className='tabs-container' value={index} onChange={handleChange}>
           <Tab className='tab1' label="tab1" />
           <Tab className='tab2' label="tab2" />
           <Tab className='tab3' label="tab3" />

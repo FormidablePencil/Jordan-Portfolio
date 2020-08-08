@@ -57,14 +57,15 @@ function Landing() {
     }
   }
 
-
+  //~ when tabs become fixed all elements within must become fixed too
+  
   return (
     <div className='landing-page'>
       <Navbar />
       <Intro
         tabTitle={tabTitles[0]}
         sectionRef={introRef}
-        tabFixed={true}
+        tabFixed={false} //careful here because now the tab is not fixed anymore for intro which initially it was always fixed
         tabFixedTopOffset={tabFixedTopOffset} />
       <DemoTech
         tabTitle={tabTitles[1]}

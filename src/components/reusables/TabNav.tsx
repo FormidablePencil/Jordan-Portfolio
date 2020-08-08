@@ -15,12 +15,17 @@ const TabNav = ({ children,
         className='customTabBar'>
         <div className="container">
           <div className={`customTab`}>
+            {/* <div id={tabTitle} style={{ height: '100vh' }}>
+              <div style={{ position: tabFixed ? "fixed" : 'absolute', zIndex: 0, height: '100vh', width: '100vw', display: 'flex' }}> */}
             <AnchorLink className='anchorLink' href={`#${tabTitle}`}>{tabTitle}</AnchorLink>
+
+            {/* </div>
+            </div> */}
           </div>
+      {children}
         </div>
       </div>
-      {children}
-    </div >
+    </div>
   )
 }
 

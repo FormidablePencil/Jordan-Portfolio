@@ -12,12 +12,14 @@ function Intro({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) {
       sectionRef={sectionRef}
       tabFixed={tabFixed}
       tabFixedTopOffset={tabFixedTopOffset}>
-      <LandingContainer anchorId={tabTitle}>
-        <p className='centered-paragraph'>Lorem ipsum dolor sit amet consectetur
-        ipsum quae nulla, at porro volupta
-        ipsum quae nulla, at porro voluptas, corrupti cumque?
+      <div style={{ height: '100vh', display: 'flex', width: '100%', backgroundColor: 'orange' }}>
+        {/* <LandingContainer anchorId={'tabTitle'}> */}
+          <p className='centered-paragraph'>Lorem ipsum dolor sit amet consectetur
+          ipsum quae nulla, at porro volupta
+          ipsum quae nulla, at porro voluptas, corrupti cumque?
       </p>
-      </LandingContainer>
+        {/* </LandingContainer> */}
+      </div>
     </TabNav>
   )
 }

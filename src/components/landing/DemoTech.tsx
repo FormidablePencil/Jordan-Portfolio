@@ -37,17 +37,18 @@ const DemoTech = ({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) => {
   const blurIcons = (boolean) => setIconsBlur(boolean)
 
   return (
+    // <div style={{ height: '100vh' }}>
     <div id={tabTitle}>
       <TabNav
+        className='demo-tech flex'
         tabBarClassName='customTabBar'
         tabClassName='customTab'
-        className='demo-tech flex'
         sectionRef={sectionRef} tabTitle={tabTitle}
         tabFixed={tabFixed}
         tabFixedTopOffset={tabFixedTopOffset}
       >
         <animated.div
-         style={toggleVidOpacity}
+          style={toggleVidOpacity}
           className='video-player-container'>
           <ReactPlayer
             muted={true}
@@ -69,6 +70,7 @@ const DemoTech = ({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) => {
           )}
         </animated.div>
       </TabNav>
+      {/* </div> */}
     </div>
   )
 }
