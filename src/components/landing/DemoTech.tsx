@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { demoTechContent } from '../../assets/constants/staticData';
-import TabNav from '../reusables/TabNav';
+import { demoTechContent } from '../../constants/staticData';
 import ReactPlayer from 'react-player'
-import TechIcon from './TechIcon';
+import TechIcon from '../reusables/TechIcon';
 import { useSpring, config, animated } from 'react-spring';
+import { withStyles, Grid } from '@material-ui/core';
+import { GridScreenHeight } from '../../styles/customMaterialUiComp';
+import styled from 'styled-components';
 
-const DemoTech = ({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) => {
-  // const demoTechRef = useRef(null)
-  // const [tabFixed, setTabFixed] = useState(false)
-  // const tabFixedTopOffset = 48
+const DemoTech = () => {
   const slowFadeInVidAnim = { mass: 10, tension: 200, friction: 102 }
   const [iconsBlur, setIconsBlur] = useState(false)
   const iconsBlurProps = useSpring({
@@ -19,60 +18,65 @@ const DemoTech = ({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) => {
   const toggleVidOpacity = useSpring({
     opacity: iconsBlur ? 1 : 0,
     config: iconsBlur ? slowFadeInVidAnim : config.slow,
-    // delay: iconsBlur ? 0 : 0
   })
 
-  const calcImgZoom = (index) => {
+
+  const calcImgZoom = (index): { scale, marginLeft, marginRight } => {
+    let scale = 'scale(1.3)'
+    let marginLeft = '1em'
+    let marginRight = '1em'
     if (demoTechContent.length === 3) {
       if (index === 0 || index === 2) {
-        return 'zoomLvl2'
-      } else return 'zoomLvl1'
+        scale = 'scale(1)'
+        marginLeft = '.3em'
+        marginRight = '.3em'
+      }
     } else if (demoTechContent.length === 4) {
       if (index === 0 || index === 3) {
-        return 'zoomLvl2'
-      } else return 'zoomLvl1'
-    } else return 'zoomLvl1'
+        scale = 'scale(1)'
+        marginLeft = '.3em'
+        marginRight = '.3em'
+      }
+    }
+    return { scale, marginLeft, marginRight }
   }
 
   const blurIcons = (boolean) => setIconsBlur(boolean)
 
   return (
-    // <div style={{ height: '100vh' }}>
-    <div id={tabTitle}>
-      <TabNav
-        className='demo-tech flex'
-        tabBarClassName='customTabBar'
-        tabClassName='customTab'
-        sectionRef={sectionRef} tabTitle={tabTitle}
-        tabFixed={tabFixed}
-        tabFixedTopOffset={tabFixedTopOffset}
-      >
-        <animated.div
-          style={toggleVidOpacity}
-          className='video-player-container'>
+    <GridScreenHeight container>
+      <GridRelative item>
+        <VidContainer style={toggleVidOpacity}>
           <ReactPlayer
             muted={true}
-            height='50%'
-            width='75%'
-            style={{ marginLeft: 'auto', marginRight: 'auto' }}
+            height='100%'
+            width='100%'
             playing={true}
             loop={true}
             url={demoTechContent[0].video} />
-        </animated.div>
-        <animated.div
-          style={iconsBlurProps}
-          className="technologies-icons-container">
+        </VidContainer>
+        <IconContainer style={iconsBlurProps}>
           {demoTechContent.map((image, index) =>
             <TechIcon
               image={image}
               blurIcons={blurIcons}
-              zoomLevelClassName={calcImgZoom(index)} />
+              indexProps={calcImgZoom(index)} />
           )}
-        </animated.div>
-      </TabNav>
-      {/* </div> */}
-    </div>
+        </IconContainer>
+        {/* </animated.div> */}
+      </GridRelative>
+    </GridScreenHeight>
   )
 }
 
 export default DemoTech
+
+const VidContainer = styled(animated.div)``
+const IconContainer = styled(animated.div)`
+  display: flex; flex-direction: row; position: absolute;
+`
+const GridRelative = withStyles({
+  root: {
+    display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100vw',
+  }
+})(Grid);

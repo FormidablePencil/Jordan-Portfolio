@@ -1,26 +1,22 @@
 import React from 'react'
-import LandingContainer from '../reusables/LandingContainer'
-import TabNav from '../reusables/TabNav'
-
-function Intro({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) {
+import { Grid, Typography, Container } from '@material-ui/core'
+import { GridScreenHeight } from '../../styles/customMaterialUiComp';
+function Intro() {
   return (
-    <TabNav
-      tabTitle={tabTitle}
-      className='intro flex'
-      tabBarClassName='customTabBar'
-      tabClassName='customTab'
-      sectionRef={sectionRef}
-      tabFixed={tabFixed}
-      tabFixedTopOffset={tabFixedTopOffset}>
-      <div style={{ height: '100vh', display: 'flex', width: '100%', backgroundColor: 'orange' }}>
-        {/* <LandingContainer anchorId={'tabTitle'}> */}
-          <p className='centered-paragraph'>Lorem ipsum dolor sit amet consectetur
-          ipsum quae nulla, at porro volupta
-          ipsum quae nulla, at porro voluptas, corrupti cumque?
-      </p>
-        {/* </LandingContainer> */}
-      </div>
-    </TabNav>
+    <Container>
+      <GridScreenHeight
+        container
+        justify='center' alignItems='center'
+        spacing={2}>
+        <Grid item xs={6}>
+          <Typography variant='body1' align="center">
+            Lorem ipsum dolor sit amet consectetur
+            ipsum quae nulla, at porro volupta
+            ipsum quae nulla, at porro voluptas, corrupti cumque?
+        </Typography>
+        </Grid>
+      </GridScreenHeight>
+    </Container>
   )
 }
 

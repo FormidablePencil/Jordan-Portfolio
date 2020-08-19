@@ -1,6 +1,7 @@
 import React from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import { tabTitles } from '../assets/constants/staticData'
+import { tabTitles } from '../constants/staticData';
+
 
 export const getNavTabPosition = (index) => {
   if (index === 0) return 100

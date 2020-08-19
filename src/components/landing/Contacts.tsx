@@ -1,47 +1,76 @@
 import React from 'react'
-import LandingContainer from '../reusables/LandingContainer'
-import { contacts } from '../../assets/constants/staticData'
-import TabNav from '../reusables/TabNav'
+import { contacts } from '../../constants/staticData'
+import { Grid, Input, Button, Container, TextareaAutosize, makeStyles, Typography } from '@material-ui/core'
+import { GridScreenHeight, GridFlex } from '../../styles/customMaterialUiComp'
 
-function Contacts({ tabFixed, tabFixedTopOffset, sectionRef, tabTitle }) {
+const useStyles = makeStyles((theme) => ({
+  paddingVertical: {
+    padding: '2em 0 2em 0 ',
+  },
+  margin: {
+    margin: '.4em'
+  },
+  textAreaMargin: {
+    margin: '2em .4em 2em .4em'
+  },
+  btnSubmit: {
+    margin: '0 .2em 0 .2em'
+  },
+  btnEmail: {
+    margin: '1em'
+  },
+  compensateForBtnOverSection: {
+    marginTop: '2em'
+  },
+  fixedHeightContactTitle: {
+    width: '3em',
+  }
+}));
+
+function Contacts() {
+  const classes = useStyles();
+  //sectionheight of it's own.
 
   return (
-    <TabNav
-      className="contacts flex"
-      tabBarClassName='customTabBar'
-      tabClassName='customTab'
-      sectionRef={sectionRef} tabTitle={tabTitle}
-      tabFixed={tabFixed}
-      tabFixedTopOffset={tabFixedTopOffset}
-    >
-      <LandingContainer        anchorId={tabTitle}
->
-        <div className="contact-box flex">
-          <div className="direct-message flex-2 flex col align-end justify-between">
-            <input placeholder='Name' type="text" />
-            <input placeholder='Email' type="text" />
-            <textarea placeholder='Message' />
-            <button className='action-btn'><p className='large'>Submit</p></button>
-          </div>
-          <div className="or-statement flex-1 flex justify-center align-center">
-            <p className='dark-txt large'>or</p>
-          </div>
-          <div className="redirect-mail flex-2">
-            <div className="url flex">
-              <p className='lessDark-txt'>Email:</p>
-              <p className='darker-txt ml-1'>{contacts.email}</p>
-            </div>
-            <div className="url flex">
-              <p className='lessDark-txt'>Github:</p>
-              <p className='darker-txt ml-1'>{contacts.github}</p>
-            </div>
-            <div className="btn-container flex flex-1 justify-center align-center">
-              <button className='action-btn'><p className='large'>Redirect to email</p></button>
-            </div>
-          </div>
-        </div>
-      </LandingContainer>
-    </TabNav>
+    <Container>
+      <GridScreenHeight
+        className={classes.paddingVertical}
+        container direction='column' alignItems='center' justify='space-evenly' wrap='nowrap'>
+        <Grid item container direction='column'>
+          <Input className={classes.margin} placeholder='Name' />
+          <Input className={classes.margin} placeholder='Email' />
+          <TextareaAutosize className={classes.textAreaMargin} rows='6' />
+          <Grid item container justify='flex-end'>
+            <Button className={classes.btnSubmit} disableElevation variant='contained'>Submit</Button>
+          </Grid>
+        </Grid>
+
+        <Grid item>
+          <Typography variant='h4' color='textPrimary'>or</Typography>
+        </Grid>
+
+        <Grid className={classes.compensateForBtnOverSection}
+          item container direction='column' alignItems='center' >
+          <Grid item container alignItems='center' justify='center' spacing={3}>
+            <GridFlex item container justify='flex-end'>
+              <Typography className={classes.fixedHeightContactTitle} variant='h6' color='textPrimary'>Email:</Typography>
+            </GridFlex>
+            <GridFlex item>
+              <Typography variant='body1' color='textPrimary'>{contacts.email}</Typography>
+            </GridFlex>
+          </Grid>
+          <Grid item container alignItems='center' justify='center' spacing={3}>
+            <GridFlex item container justify='flex-end'>
+              <Typography className={classes.fixedHeightContactTitle} variant='h6' color='textPrimary'>Github:</Typography>
+            </GridFlex>
+            <GridFlex item>
+              <Typography variant='body1' color='textPrimary'>{contacts.github}</Typography>
+            </GridFlex>
+          </Grid>
+          <Button className={classes.btnEmail} disableElevation variant='contained'>Redirect to email</Button>
+        </Grid>
+      </GridScreenHeight>
+    </Container>
   )
 }
 
