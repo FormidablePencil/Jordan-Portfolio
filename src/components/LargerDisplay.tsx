@@ -1,7 +1,7 @@
 import React from 'react'
 import ScrollableTabsWrapper, { NavTabsWrapper } from './scrollable-tabs'
 import Intro from './landing/Intro';
-import DemoTech from './landing/DemoTech';
+import DemoTech from './mobileComps/DemoTech';
 import DemoProjects from './landing/DemoProjects';
 import Contacts from './landing/Contacts';
 import Profile from './mobileComps/Profile';

@@ -6,7 +6,7 @@ import React from 'react'
 // import Contacts from '../components/landing/Contacts'
 // import Navbar from '../components/Navbar'
 // import { tabTitles } from '../assets/constants/staticData'
-import MobileDisplay from '../components/MobileDisplay';
+import MobileDisplay from '../components/mobileComps/MobileDisplay';
 import LargerDisplay from '../components/LargerDisplay';
 import { useMediaQuery } from '@material-ui/core';
 

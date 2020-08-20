@@ -22,26 +22,26 @@ function Navigator() {
   return (
     <Grid container justify='space-between' spacing={2} direction='row' wrap='nowrap'>
       <GridFlex item container justify='center'>
-        <Button className={classes.btn}>
-          <Link to='/tech-mobile'>
+        <Link to='/tech-mobile'>
+          <Button variant='contained' color='secondary' className={classes.btn}>
             <Typography variant='h6'>
               Exper tech at
             </Typography>
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </GridFlex>
       <GridFlex item container justify='center'>
-        <Button className={classes.btn}>
-          <Link to='/contacts-mobile'>
+        <Link to='/contacts-mobile'>
+          <Button variant='contained' color='secondary' className={classes.btn}>
             <Typography variant='h6'>
               Contacts & what am about
             </Typography>
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </GridFlex>
       <GridFlex item container justify='center'>
         <Link to='/projects-mobile'>
-          <Button className={classes.btn}>
+          <Button variant='contained' color='secondary' className={classes.btn}>
             <Typography variant='h6'>
               Projects
             </Typography>
