@@ -7,8 +7,9 @@ const useStyles = makeStyles((theme) => ({
   paddingVertical: {
     padding: '2em 0 2em 0 ',
   },
-  margin: {
-    margin: '.4em'
+  inputStyles: {
+    margin: '.4em',
+    flex: 1
   },
   textAreaMargin: {
     margin: '2em .4em 2em .4em'
@@ -29,28 +30,34 @@ const useStyles = makeStyles((theme) => ({
 
 function Contacts() {
   const classes = useStyles();
-  //sectionheight of it's own.
 
   return (
     <Container>
       <GridScreenHeight
         className={classes.paddingVertical}
-        container direction='column' alignItems='center' justify='space-evenly' wrap='nowrap'>
+        container direction='column' alignItems='center' justify='space-around' wrap='nowrap'>
+        <div style={{ height: '5em' }} />
         <Grid item container direction='column'>
-          <Input className={classes.margin} placeholder='Name' />
-          <Input className={classes.margin} placeholder='Email' />
+          <Grid item container direction='column'>
+            <GridFlex item container>
+              <Input className={classes.inputStyles} placeholder='Name' />
+            </GridFlex>
+            <GridFlex item container>
+              <Input className={classes.inputStyles} placeholder='Email' />
+            </GridFlex>
+          </Grid>
           <TextareaAutosize className={classes.textAreaMargin} rows='6' />
           <Grid item container justify='flex-end'>
             <Button className={classes.btnSubmit} disableElevation variant='contained'>Submit</Button>
           </Grid>
         </Grid>
 
-        <Grid item>
+        <Grid item container justify='center'>
           <Typography variant='h4' color='textPrimary'>or</Typography>
         </Grid>
 
         <Grid className={classes.compensateForBtnOverSection}
-          item container direction='column' alignItems='center' >
+          item container direction='column' alignItems='center'>
           <Grid item container alignItems='center' justify='center' spacing={3}>
             <GridFlex item container justify='flex-end'>
               <Typography className={classes.fixedHeightContactTitle} variant='h6' color='textPrimary'>Email:</Typography>

@@ -12,22 +12,31 @@ function LargerDisplay() {
   return (
     <ScrollableTabsWrapper
       heightOfTabs={35}>
-      <NavTabsWrapper>
+      <NavTabsWrapper
+        tabColor='white'
+        bgImg={{ src: require('../assets/images/bgWhite.jpg'), alt: '' }}>
         <Intro />
       </NavTabsWrapper>
-      <NavTabsWrapper>
-        <Container maxWidth='md'>
+      <NavTabsWrapper
+        tabColor='white'
+        bgImg={{ src: require('../assets/images/bgWhite2.jpg'), alt: '' }}
+        stickyBackgroundBgColor={'red'}>
+        <Container maxWidth='md' >
           <div style={{ height: '100vh' }}>
             <DemoTech />
           </div>
         </Container>
       </NavTabsWrapper>
-      <NavTabsWrapper>
+      <NavTabsWrapper
+        tabColor='white'
+        bgImg={{ src: require('../assets/images//bgWhite3.jpg'), alt: '' }}>
         <div style={{ height: '100vh' }}>
           <DemoProjects />
         </div>
       </NavTabsWrapper>
-      <NavTabsWrapper>
+      <NavTabsWrapper
+        tabColor='white'
+        bgImg={{ src: require('../assets/images/bgWhite4.jpg'), alt: '' }}>
         <Container maxWidth='md'>
           <Profile />
           <Contacts />

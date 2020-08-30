@@ -73,13 +73,11 @@ const Navbar = (props) => {
   )
 }
 
-
-
 interface navTabsWrapperT extends scrollableTabsChildrenT {
   index: number,
   anchor, stickyBackgroundBgColor, tabColor, extraTopSpace: number,
   overrideTabsStyle, uniqueTabTitle: string, arrUniqueTabTitles: {},
-  saveTitlesToSourceOfTrue: Function
+  saveTitlesToSourceOfTrue: Function, bgImg
 }
 const NavTabsWrapper = (props) => {
   const {
@@ -94,6 +92,7 @@ const NavTabsWrapper = (props) => {
     uniqueTabTitle,
     index,
     saveTitlesToSourceOfTrue,
+    bgImg,
   }: navTabsWrapperT = props
 
   const [temporarilyHolding] = useState({ index: index, title: uniqueTabTitle })
@@ -117,6 +116,7 @@ const NavTabsWrapper = (props) => {
           top: heightOfTabs + extraTopSpace,
           zIndex: 20,
         }}>
+        <div style={{ position: 'absolute', backgroundColor: 'white', height: '1em', width: '100vw', zIndex: 100 }} />
         <AnchorLink
           style={{ //Tab
             zIndex: 30,
@@ -145,6 +145,9 @@ const NavTabsWrapper = (props) => {
         top: heightOfTabs + extraTopSpace,
         background: stickyBackgroundBgColor,
       }}>
+        {bgImg &&
+          <img style={{ height: '100%', width: '100%' }} src={bgImg.src} alt='' />
+        }
       </div>
       <div id={anchor} style={{
         zIndex: 10,
@@ -202,6 +205,7 @@ Navbar.defaultProps = {
   heightOfTabs: PropTypes.number,
 }
 NavTabsWrapper.propTypes = {
+  bgImg: PropTypes.object,
   children: PropTypes.any.isRequired,
   tabColor: PropTypes.string,
   anchor: PropTypes.string.isRequired,

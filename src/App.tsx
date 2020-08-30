@@ -3,6 +3,8 @@ import './styles/main.sass'
 import Landing from './pages/Landing';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from './styles/themeStyles';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Cms from './pages/Cms';
 // import { isMobileScreenDimensions } from './helperFuncs';
 
 //* prevent zoom in on mobile devices
@@ -10,7 +12,16 @@ import { theme } from './styles/themeStyles';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Landing />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/'>
+            <Landing />
+          </Route>
+          <Route path='/cms'>
+            <Cms />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
