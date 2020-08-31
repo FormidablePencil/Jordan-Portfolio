@@ -14,7 +14,8 @@ export const pfcDefaults = {
       subSections: [
         { tabTitle: 'Images' },
         { tabTitle: 'Videos' },
-        { tabTitle: 'Technologies' }]
+        { tabTitle: 'Technologies' }
+      ]
     },
     {
       tabTitle: 'Info & Contacts',

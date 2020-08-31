@@ -13,8 +13,6 @@ const ScrollableTabsWrapper = (props: any) => {
   const [arrUniqueTabTitles, setArrUniqueTabTitles] = useState<any>([])
 
   const saveTitlesToSourceOfTrue = async (index, title) => {
-    console.log(index, title);
-    console.log(arrUniqueTabTitles);
     setArrUniqueTabTitles([...arrUniqueTabTitles, { index, title }]) //! Problem is that setState is called too fast multiple times and it only registers the last call.
   }
 

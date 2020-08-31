@@ -15,20 +15,20 @@ function App() {
   const store = configureStore()
 
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/'>
-            <Provider store={store}>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/'>
               <Landing />
-            </Provider>
-          </Route>
-          <Route path='/cms'>
-            <Cms />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </ThemeProvider>
+            </Route>
+            <Route path='/cms'>
+              <Cms />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

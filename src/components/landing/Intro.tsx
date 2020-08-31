@@ -6,7 +6,6 @@ import { rootT } from '../../storeConfig';
 
 function Intro() {
   const introParagraph = useSelector((state: rootT) => state.portfolioContent.introParagraph)
-console.log(introParagraph, 'introParagraph');
   return (
     <Container>
       <GridScreenHeight

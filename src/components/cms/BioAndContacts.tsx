@@ -1,38 +1,82 @@
 import React from 'react'
-import { TextField, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
+import { CustomCmsTextField } from './CmsTextFields'
+import { useSelector } from 'react-redux'
+import { rootT } from '../../storeConfig'
+import { Captions } from '../../pages/Cms';
 
-function BioAndContacts({ portfolioData, onChangeValue, Captions, newAdditionOnClick, classes, portfolioDataChanged, onClickSubmit }) {
+function BioAndContacts({ classes }) {
+  const type = 'tabSectionTitles'
+  const subTypes = { bio: 'bio', contacts: 'contacts' }
+  const { cmsPortfolioContent } = useSelector((state: rootT) => state)
+  // const { onChangeValue, portfolioData } = useModifyContent()
   return (
     <>
-      <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[3].subSections[0].tabTitle}
-        onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 3, additionalProp: 0, value: e.target.value })}
+      {/* //*========= Bio ===========*/}
+      <CustomCmsTextField
+        textfieldValue={cmsPortfolioContent.tabSectionTitles[3].subSections[0].tabTitle}
+        placeholder=''
+        additionalProp={0}
+        typeOfInput={3}
+        type={type}
+        index
       />
 
       <Grid item className={classes.marginLeft}>
         <Captions input1='Title' input2='Paragraph' />
-        <TextField className={classes.textField} value={portfolioData.bio.title} placeholder='Title'
-          onChange={(e) => onChangeValue({ type: 'bio', index: null, input: 'title', value: e.target.value })} />
-        <TextField className={classes.textField} value={portfolioData.bio.paragraph} placeholder='bio paragraph'
-          onChange={(e) => onChangeValue({ type: 'bio', index: null, input: 'paragraph', value: e.target.value })} />
+        <CustomCmsTextField
+          textfieldValue={cmsPortfolioContent.bio.title}
+          placeholder='Title'
+          typeOfInput='title'
+          type={subTypes.bio}
+          index={null}
+        />
+        <CustomCmsTextField
+          textfieldValue={cmsPortfolioContent.bio.paragraph}
+          placeholder='Bio paragraph'
+          typeOfInput='paragraph'
+          type={subTypes.bio}
+          index={null}
+        />
       </Grid>
 
 
-      <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[3].subSections[1].tabTitle}
-        onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 3, additionalProp: 1, value: e.target.value })}
+      {/* //*========= Contacts ===========*/}
+      <CustomCmsTextField
+        textfieldValue={cmsPortfolioContent.tabSectionTitles[3].subSections[1].tabTitle}
+        placeholder={''}
+        typeOfInput={3}
+        additionalProp={1}
+        type={type}
+        index={null}
       />
-
       <Grid item container direction='column' className={classes.marginLeft}>
         <Grid item>
-          <TextField value={portfolioData.contacts.email} placeholder='Email:'
-            onChange={(e) => onChangeValue({ type: 'contacts', index: null, input: 'email', value: e.target.value })} />
+          <CustomCmsTextField
+            textfieldValue={cmsPortfolioContent.contacts.email}
+            placeholder='Email'
+            typeOfInput='email'
+            type={subTypes.bio}
+            index={null}
+          />
         </Grid>
         <Grid item>
-          <TextField value={portfolioData.contacts.linkedin} placeholder='LinkedIn:'
-            onChange={(e) => onChangeValue({ type: 'contacts', index: null, input: 'linkedin', value: e.target.value })} />
+          <CustomCmsTextField
+            textfieldValue={cmsPortfolioContent.contacts.linkedin}
+            placeholder='Linkedin'
+            typeOfInput='linkedin'
+            type={subTypes.bio}
+            index={null}
+          />
         </Grid>
         <Grid item>
-          <TextField value={portfolioData.contacts.github} placeholder='GitHub:'
-            onChange={(e) => onChangeValue({ type: 'contacts', index: null, input: 'github', value: e.target.value })} />
+          <CustomCmsTextField
+            textfieldValue={cmsPortfolioContent.contacts.github}
+            placeholder='Github'
+            typeOfInput='github'
+            type={subTypes.bio}
+            index={null}
+          />
         </Grid>
       </Grid>
     </>

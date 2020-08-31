@@ -1,68 +1,145 @@
 import React from 'react'
 import { TextField, Grid, Button } from '@material-ui/core'
-import { Typography } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
+import SectionWrapper from './SectionWrapper';
+import CmsTextFields, { CustomCmsTextField } from './CmsTextFields';
+import  useModifyContent from '../../hooks/useModifyContent';
+import { Captions } from '../../pages/Cms';
+import { useDispatch, useSelector } from 'react-redux';
+import { NEW_ADDITION_TO_CMS_CONTENT } from '../../actions/constants'
+import { rootT } from '../../storeConfig';
 
-function ContentSection({ portfolioData, onChangeValue, Captions, newAdditionOnClick, classes }) {
-  // const classes = useStyles()
+function ContentSection() {
+  const types = {
+    moreTech: 'moreTech',
+    photoshop: 'photoshop',
+    videoProjects: 'videoProjects',
+  }
+  const { cmsPortfolioContent } = useSelector((state: rootT) => state)
+  const dispatch = useDispatch()
+  const newAdditionOnClick = (props) => dispatch({ type: NEW_ADDITION_TO_CMS_CONTENT, payload: props })
   return (
     <>
-      <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[2].subSections[0].tabTitle}
-        onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 2, additionalProp: 0, value: e.target.value })}
+      {/* //*========= Images Section ===========*/}
+      <CustomCmsTextField
+        textfieldValue={cmsPortfolioContent.tabSectionTitles[2].subSections[0].tabTitle}
+        placeholder={''}
+        typeOfInput={2}
+        additionalProp={0}
+        type='tabSectionTitles'
+        index={null}
       />
       <Grid item>
         <Captions input1='Tech icon URL' input2='Name of tech' />
-        {portfolioData.moreTech.map((tec, index) =>
+        {cmsPortfolioContent.moreTech.map((tec, index) =>
           <div key={index}>
-            <div>
-              <Typography variant='body1' display='inline' className={classes.index}>{index}</Typography>
-              <TextField className={classes.textField} value={tec.icon} placeholder='Tech icon URL'
-                onChange={(e) => onChangeValue({ type: 'moreTech', index, input: 'icon', value: e.target.value })} />
-              <TextField className={classes.textField} value={tec.alt} placeholder='Name of tech'
-                onChange={(e) => onChangeValue({ type: 'moreTech', index, input: 'alt', value: e.target.value })} />
-            </div>
-            {index === portfolioData.moreTech.length - 1 &&
-              <Button onClick={() => newAdditionOnClick('moreTech')}><AddIcon /></Button>}
+            <SectionWrapper
+              type={types.moreTech}
+              index={index}
+              deleteBtnVisible={cmsPortfolioContent[types.moreTech].length > 1}
+            >
+              <CmsTextFields
+                arrOfTextFields={[
+                  {
+                    textfieldValue: tec.icon,
+                    placeholder: 'Tech icon URL',
+                    typeOfInput: 'icon'
+                  },
+                  {
+                    textfieldValue: tec.alt,
+                    placeholder: 'Name of tech',
+                    typeOfInput: 'alt'
+                  }
+                ]}
+                index={index}
+                type={types.moreTech}
+              />
+            </SectionWrapper>
+            {index === cmsPortfolioContent.moreTech.length - 1 &&
+              <Button onClick={() => newAdditionOnClick(types.moreTech)}><AddIcon /></Button>}
           </div>
-        )}
-      </Grid>
+        )
+        }
+      </Grid >
 
-      <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[2].subSections[1].tabTitle}
-        onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 2, additionalProp: 1, value: e.target.value })}
+      {/* //*========= Videos Section ===========*/}
+      <CustomCmsTextField
+        textfieldValue={cmsPortfolioContent.tabSectionTitles[2].subSections[1].tabTitle}
+        placeholder={''}
+        typeOfInput={2}
+        additionalProp={1}
+        type='tabSectionTitles'
+        index={null}
       />
-      <Grid item className={classes.marginLeft}>
-        <Captions input1='Image URL' input2='Title URL' />
-        {portfolioData.photoshop.map((image, index) =>
+      <Grid item>
+        <Captions input1='Image URL' input2='Title' />
+        {cmsPortfolioContent.photoshop.map((image, index) =>
           <div key={index}>
-            <div>
-              <Typography variant='body1' display='inline' className={classes.index}>{index}</Typography>
-              <TextField className={classes.textField} value={image.url} placeholder='Image URL'
-                onChange={(e) => onChangeValue({ type: 'photoshop', index, input: 'url', value: e.target.value })} />
-              <TextField className={classes.textField} value={image.alt} placeholder='Title URL'
-                onChange={(e) => onChangeValue({ type: 'photoshop', index, input: 'alt', value: e.target.value })} />
-            </div>
-            {index === portfolioData.photoshop.length - 1 &&
-              <Button onClick={() => newAdditionOnClick('photoshop')}><AddIcon /></Button>}
+            <SectionWrapper
+              type={types.photoshop}
+              index={index}
+              deleteBtnVisible={cmsPortfolioContent[types.photoshop].length > 1}
+            >
+              <CmsTextFields
+                arrOfTextFields={[
+                  {
+                    textfieldValue: image.url,
+                    placeholder: 'Image URL',
+                    typeOfInput: 'url'
+                  },
+                  {
+                    textfieldValue: image.alt,
+                    placeholder: 'Title',
+                    typeOfInput: 'alt'
+                  }
+                ]}
+                index={index}
+                type={types.photoshop}
+              />
+            </SectionWrapper>
+            {index === cmsPortfolioContent.photoshop.length - 1 &&
+              <Button onClick={() => newAdditionOnClick(types.photoshop)}><AddIcon /></Button>}
           </div>
         )}
       </Grid>
 
-      <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[2].subSections[2].tabTitle}
-        onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 2, additionalProp: 2, value: e.target.value })}
+      {/* //*========= Technologies Section ===========*/}
+      <CustomCmsTextField
+        textfieldValue={cmsPortfolioContent.tabSectionTitles[2].subSections[2].tabTitle}
+        placeholder={''}
+        typeOfInput={2}
+        additionalProp={2}
+        type='tabSectionTitles'
+        index={null}
       />
       <Grid item>
         <Captions input1='Tech icon URL' input2='Title' />
-        {portfolioData.videoProjects.map((image, index) =>
+        {cmsPortfolioContent.videoProjects.map((image, index) =>
           <div key={index}>
-            <div>
-              <Typography variant='body1' display='inline' className={classes.index}>{index}</Typography>
-              <TextField className={classes.textField} value={image.url} placeholder='Tech icon URL'
-                onChange={(e) => onChangeValue({ type: 'videoProjects', index, input: 'url', value: e.target.value })} />
-              <TextField className={classes.textField} value={image.alt} placeholder='Title'
-                onChange={(e) => onChangeValue({ type: 'videoProjects', index, input: 'alt', value: e.target.value })} />
-            </div>
-            {index === portfolioData.videoProjects.length - 1 &&
-              <Button onClick={() => newAdditionOnClick('videoProjects')}><AddIcon /></Button>}
+            <SectionWrapper
+              type={types.videoProjects}
+              index={index}
+              deleteBtnVisible={cmsPortfolioContent[types.videoProjects].length > 1}
+            >
+              <CmsTextFields
+                arrOfTextFields={[
+                  {
+                    textfieldValue: image.url,
+                    placeholder: 'Tech icon URL',
+                    typeOfInput: 'url'
+                  },
+                  {
+                    textfieldValue: image.alt,
+                    placeholder: 'Title',
+                    typeOfInput: 'alt'
+                  }
+                ]}
+                index={index}
+                type={types.videoProjects}
+              />
+            </SectionWrapper>
+            {index === cmsPortfolioContent.videoProjects.length - 1 &&
+              <Button onClick={() => newAdditionOnClick(types.videoProjects)}><AddIcon /></Button>}
           </div>
         )}
       </Grid>
@@ -72,51 +149,3 @@ function ContentSection({ portfolioData, onChangeValue, Captions, newAdditionOnC
 }
 
 export default ContentSection
-
-
-// const useStyles = makeStyles((theme) => ({
-//   cmsBackground: {
-//     backgroundColor: '#E8E8E8',
-//     width: '50em',
-//     marginTop: '2em',
-//     marginBottom: '2em',
-//     padding: '.2em'
-//   },
-//   saveContentBtn: {
-//     backgroundColor: 'green',
-//     position: "fixed",
-//     bottom: '1em',
-//     right: '1em',
-//   },
-//   saveContentBtnStandby: {
-//     backgroundColor: 'grey',
-//     position: "fixed",
-//     bottom: '1em',
-//     right: '1em',
-//   },
-//   saveContentBtnErr: {
-//     backgroundColor: 'yellow',
-//     position: "fixed",
-//     bottom: '1em',
-//     right: '1em',
-//   },
-//   index: {
-//     marginRight: 10,
-//     marginTop: '.2em',
-//     display: 'inline-block'
-//   },
-//   caption: {
-//     color: '#1182B0'
-//   },
-//   largeCaption: {
-//     color: '#062F40',
-//     maxWidth: '10em',
-//     marginLeft: '.2em'
-//   },
-//   textField: {
-//     marginRight: '10px',
-//   },
-//   textAreaLarge: {
-//     width: '30em'
-//   }
-// }));

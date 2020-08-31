@@ -2,12 +2,15 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import portfolioContentReducer from './reducers/portfolioContentReducer'
 import { portfolioContentT } from './types/generic'
+import cmsPortfolioContentReducer from './reducers/cmsPortfolioContentReducer'
 
 export interface rootT {
   portfolioContent: portfolioContentT
+  cmsPortfolioContent: portfolioContentT
 }
 const rootReducer = combineReducers<rootT>({
-  portfolioContent: portfolioContentReducer
+  portfolioContent: portfolioContentReducer,
+  cmsPortfolioContent: cmsPortfolioContentReducer
 })
 
 const initialState = {}
