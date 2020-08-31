@@ -1,9 +1,12 @@
-import { ON_CHANGE_VALUE, DELETE_CERTAIN_PORTFOLIO_ITEM, NEW_ADDITION_TO_CMS_CONTENT } from "../actions/constants"
+import { ON_CHANGE_VALUE, DELETE_CERTAIN_PORTFOLIO_ITEM, NEW_ADDITION_TO_CMS_CONTENT, FETCHED_CMS_PORTFOLIO_DATA } from "../actions/constants"
 import { initialPortfolioContent } from "./portfolioContentReducer"
 import cmsPortfolioModifiers from "../logic/cmsPortfolioModifiers"
 
 export default (state = initialPortfolioContent, { type, payload }) => {
   switch (type) {
+
+    case FETCHED_CMS_PORTFOLIO_DATA:
+      return payload
 
     case ON_CHANGE_VALUE:
       return cmsPortfolioModifiers.onChangeValue(payload, state)

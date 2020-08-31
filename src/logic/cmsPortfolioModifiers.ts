@@ -2,16 +2,16 @@ import { pfcDefaults } from "../reducers/portfolioContentReducer"
 
 const cmsPortfolioModifiers = {
   onChangeValue: (payload, state) => {
-    const { type, index, input, value, additionalProp }: {
-      type, index, input, value, additionalProp?: number
+    const { type, index, input, value, deeperIndexInArray }: {
+      type, index, input, value, deeperIndexInArray?: number
     } = payload
     let otherInput: string
     let otherInput2: string
     switch (type) {
       case 'tabSectionTitles':
         const updatedState = [...state[type]] // So const is actually not immutable
-        if (typeof additionalProp === 'number')
-          updatedState[input].subSections[additionalProp].tabTitle = value
+        if (typeof deeperIndexInArray === 'number')
+          updatedState[input].subSections[deeperIndexInArray].tabTitle = value
         else
           updatedState[input].tabTitle = value
         return { ...state, [type]: updatedState }
@@ -23,8 +23,11 @@ const cmsPortfolioModifiers = {
       case 'tech':
         if (input === 'icon') {
           otherInput = 'video'
-          otherInput2 = 'url'
-        } else if (input === 'video' || input === 'url') {
+          otherInput2 = 'alt'
+        } else if (input === 'video') {
+          otherInput = 'alt'
+          otherInput2 = 'icon'
+        } else if (input === 'alt') {
           otherInput = 'video'
           otherInput2 = 'icon'
         }
@@ -55,7 +58,6 @@ const cmsPortfolioModifiers = {
         [input]: value
       }
     }
-    console.log(newthing, otherInput, otherInput2, input)
     addedNew[index] = newthing
     return { ...state, [type]: addedNew }
   },

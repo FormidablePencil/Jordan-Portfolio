@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Grid, Typography, makeStyles, Button, Container, TextareaAutosize } from '@material-ui/core'
 import { updateContent } from '../actions/fetching';
 import Login from '../components/cms/Login';
@@ -6,8 +6,10 @@ import { GridFlex } from '../styles/customMaterialUiComp';
 import ContentSection from '../components/cms/ContentSection';
 import BioAndContacts from '../components/cms/BioAndContacts';
 import TechStackCms from '../components/cms/TechStackCms';
-import useModifyContent from '../hooks/useModifyContent';
 import { CustomCmsTextField } from '../components/cms/CmsTextFields';
+import { useSelector, useDispatch } from 'react-redux';
+import { rootT } from '../storeConfig';
+import { ON_CHANGE_VALUE } from '../actions/constants';
 
 export const Captions = ({ input1, input2, input3 }: { input1, input2, input3?: string }) => {
   const classes = useStyles();
@@ -24,20 +26,34 @@ export const Captions = ({ input1, input2, input3 }: { input1, input2, input3?: 
 }
 
 function Cms() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [, setIsLoggedIn] = useState(false)
   const [controlledAuth, setControlledAuth] = useState({ username: '', password: '' })
+  const [portfolioDataChanged, setPortfolioDataChanged] = useState<boolean | 'err'>(false)
+  const { cmsPortfolioContent } = useSelector((state: rootT) => state)
   const classes = useStyles();
+  const dispatch = useDispatch()
 
-  const {
-    onChangeValue, newAdditionOnClick,
-    portfolioDataChanged, setPortfolioDataChanged,
-    setPortfolioData, portfolioData
-  } = useModifyContent()
+  const onChangeHandler = (e) => dispatch({
+    type: ON_CHANGE_VALUE,
+    payload: {
+      type: 'introParagraph',
+      index: null,
+      input: 'paragraph',
+      value: e.target.value,
+    }
+  })
+
+  const renderCount = useRef(0)
+  useEffect(() => {
+    if (renderCount.current === 1) //when page loads the state won't be toggled
+      setPortfolioDataChanged(true)
+    else renderCount.current = 1
+  }, [cmsPortfolioContent, setPortfolioDataChanged])
 
 
   const loggedIn = (boolean) => setIsLoggedIn(boolean)
   const onClickSubmit = async () => {
-    const updated = await updateContent(portfolioData, controlledAuth)
+    const updated = await updateContent(cmsPortfolioContent, controlledAuth)
     if (updated)
       setPortfolioDataChanged(false)
     else
@@ -50,9 +66,7 @@ function Cms() {
       <Grid spacing={5} container direction='column' className={classes.cmsBackground}>
 
         {/* //*========= Authentication ===========*/}
-        {/* //! take a look at this */}
         <Login
-          setPortfolioData={setPortfolioData}
           loggedIn={loggedIn}
           controlledAuth={controlledAuth}
           setControlledAuth={setControlledAuth}
@@ -60,9 +74,9 @@ function Cms() {
 
         {/* //*========= Intro Section ===========*/}
         <CustomCmsTextField
-          textfieldValue={portfolioData.tabSectionTitles[0].tabTitle}
+          textfieldValue={cmsPortfolioContent.tabSectionTitles[0].tabTitle}
           placeholder={''}
-          typeOfInput={0}
+          indexInArray={0}
           type='tabSectionTitles'
           index={null}
         />
@@ -70,21 +84,16 @@ function Cms() {
           <TextareaAutosize
             className={classes.textAreaLarge}
             rows={5}
-            value={portfolioData.introParagraph}
+            value={cmsPortfolioContent.introParagraph}
             placeholder='Paragraph...'
-            onChange={(e) => onChangeValue({
-              type: 'introParagraph',
-              index: null,
-              input: 'paragraph',
-              value: e.target.value,
-            })} />
+            onChange={onChangeHandler} />
         </Grid>
 
         {/* //*========= Tech Stack ===========*/}
         <CustomCmsTextField
-          textfieldValue={portfolioData.tabSectionTitles[1].tabTitle}
+          textfieldValue={cmsPortfolioContent.tabSectionTitles[1].tabTitle}
           placeholder={''}
-          typeOfInput={1}
+          indexInArray={1}
           type='tabSectionTitles'
           index={null}
         />
@@ -92,9 +101,9 @@ function Cms() {
 
         {/* //*========= Content Section ===========*/}
         <CustomCmsTextField
-          textfieldValue={portfolioData.tabSectionTitles[2].tabTitle}
+          textfieldValue={cmsPortfolioContent.tabSectionTitles[2].tabTitle}
           placeholder={''}
-          typeOfInput={2}
+          indexInArray={2}
           type='tabSectionTitles'
           index={null}
         />
@@ -104,9 +113,9 @@ function Cms() {
 
         {/* //*========= Bio and Contacts ===========*/}
         <CustomCmsTextField
-          textfieldValue={portfolioData.tabSectionTitles[3].tabTitle}
+          textfieldValue={cmsPortfolioContent.tabSectionTitles[3].tabTitle}
           placeholder={''}
-          typeOfInput={3}
+          indexInArray={3}
           type='tabSectionTitles'
           index={null}
         />
@@ -161,7 +170,6 @@ const useStyles = makeStyles((theme) => ({
     bottom: '1em',
     right: '1em',
   },
-
   caption: {
     color: '#1182B0'
   },

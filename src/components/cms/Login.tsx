@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, Input, Button, makeStyles } from '@material-ui/core';
 import { fetchContentData } from '../../actions/fetching';
+import { useDispatch } from 'react-redux';
+import { FETCHED_CMS_PORTFOLIO_DATA } from '../../actions/constants';
 
-const Login = ({ loggedIn, controlledAuth, setControlledAuth, setPortfolioData }) => {
+const Login = ({ loggedIn, controlledAuth, setControlledAuth }) => {
   const classes = useStyles();
+  const dispatch = useDispatch()
   // eslint-disable-next-line 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -11,11 +14,11 @@ const Login = ({ loggedIn, controlledAuth, setControlledAuth, setPortfolioData }
     const fetchedContent = await fetchContentData(controlledAuth)
     if (fetchedContent)
       if (fetchedContent.data)
-        setPortfolioData(fetchedContent.data)
+        dispatch({ type: FETCHED_CMS_PORTFOLIO_DATA, payload: fetchedContent.data })
   }
 
+
   useEffect(() => {
-    // console.log(controlledAuth);
     if (isAuthenticated) {
       loggedIn(true)
     }

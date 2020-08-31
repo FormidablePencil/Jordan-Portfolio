@@ -1,13 +1,13 @@
 import React from 'react'
 import { TextField, Typography, makeStyles } from '@material-ui/core'
-import useModifyContent from '../../hooks/useModifyContent'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { rootT } from '../../storeConfig';
+import { ON_CHANGE_VALUE } from '../../actions/constants';
 
 interface arrOfTextFields {
   textfieldValue: string
   placeholder: string
-  typeOfInput: string
+  indexInArray: string
   map?: Function
 }
 const CmsTextFields = ({ arrOfTextFields, index, type }: { arrOfTextFields: arrOfTextFields[], index, type }) => {
@@ -16,48 +16,50 @@ const CmsTextFields = ({ arrOfTextFields, index, type }: { arrOfTextFields: arrO
     <>
       <Typography variant='body1' display='inline' className={classes.index}>{index}</Typography>
       {arrOfTextFields.map((props: arrOfTextFields) =>
-        <CustomCmsTextField
-          textfieldValue={props.textfieldValue}
-          placeholder={props.placeholder}
-          typeOfInput={props.typeOfInput}
-          type={type}
-          index={index}
-        />
+        <div key={props.indexInArray} style={{ display: 'inline' }}>
+          <CustomCmsTextField
+            textfieldValue={props.textfieldValue}
+            placeholder={props.placeholder}
+            indexInArray={props.indexInArray}
+            type={type}
+            index={index}
+          />
+        </div>
       )}
     </>
   )
 }
 
 
-interface T { textfieldValue, placeholder, typeOfInput, additionalProp?: any, type, index }
-export const CustomCmsTextField = ({ textfieldValue, placeholder, typeOfInput, additionalProp, type, index }: T) => {
-  const classes = useStyles();
-  const { onChangeValue } = useModifyContent()
+interface T { textfieldValue, placeholder, indexInArray, deeperIndexInArray?: any, type, index }
+export const CustomCmsTextField = ({ textfieldValue, placeholder, indexInArray, deeperIndexInArray, type, index }: T) => {
   const { cmsPortfolioContent } = useSelector((state: rootT) => state)
+  const classes = useStyles();
+  const dispatch = useDispatch()
+
+  const onChangeValue = (props) => dispatch({ type: ON_CHANGE_VALUE, payload: props })
 
   let value
-
   switch (type) {
     case 'tabSectionTitles':
-      if (additionalProp || additionalProp === 0)
-        value = cmsPortfolioContent[type][typeOfInput].subSections[additionalProp].tabTitle
+      if (deeperIndexInArray || deeperIndexInArray === 0)
+        value = cmsPortfolioContent[type][indexInArray].subSections[deeperIndexInArray].tabTitle
       else
-        value = cmsPortfolioContent[type][typeOfInput].tabTitle
+        value = cmsPortfolioContent[type][indexInArray].tabTitle
       break;
     case 'introParagraph':
       value = cmsPortfolioContent[type]
       break
     case 'videoProjects':
     case 'tech':
-      break
     case 'moreTech':
     case 'photoshop':
     case 'bio':
     case 'contacts':
       if (index === null)
-        value = cmsPortfolioContent[type][typeOfInput]
+        value = cmsPortfolioContent[type][indexInArray]
       else
-        value = cmsPortfolioContent[type][index][typeOfInput]
+        value = cmsPortfolioContent[type][index][indexInArray]
       break
     default:
       break;
@@ -67,7 +69,7 @@ export const CustomCmsTextField = ({ textfieldValue, placeholder, typeOfInput, a
     <TextField className={classes.textField}
       value={value}
       placeholder={placeholder}
-      onChange={(e) => onChangeValue({ type, index, input: typeOfInput, additionalProp, value: e.target.value })} />
+      onChange={(e) => onChangeValue({ type, index, input: indexInArray, deeperIndexInArray, value: e.target.value })} />
   )
 }
 

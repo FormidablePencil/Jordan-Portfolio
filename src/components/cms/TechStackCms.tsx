@@ -30,17 +30,17 @@ function TechStackCms() {
                 {
                   textfieldValue: tec.icon,
                   placeholder: 'Tech icon URL',
-                  typeOfInput: 'icon'
+                  indexInArray: 'icon'
                 },
                 {
                   textfieldValue: tec.video,
                   placeholder: 'Tech video URL',
-                  typeOfInput: 'video'
+                  indexInArray: 'video'
                 },
                 {
                   textfieldValue: tec.alt,
                   placeholder: 'Name of tech',
-                  typeOfInput: 'alt'
+                  indexInArray: 'alt'
                 }
               ]}
               index={index}

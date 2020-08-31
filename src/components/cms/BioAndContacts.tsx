@@ -16,8 +16,8 @@ function BioAndContacts({ classes }) {
       <CustomCmsTextField
         textfieldValue={cmsPortfolioContent.tabSectionTitles[3].subSections[0].tabTitle}
         placeholder=''
-        additionalProp={0}
-        typeOfInput={3}
+        deeperIndexInArray={0}
+        indexInArray={3}
         type={type}
         index
       />
@@ -27,14 +27,14 @@ function BioAndContacts({ classes }) {
         <CustomCmsTextField
           textfieldValue={cmsPortfolioContent.bio.title}
           placeholder='Title'
-          typeOfInput='title'
+          indexInArray='title'
           type={subTypes.bio}
           index={null}
         />
         <CustomCmsTextField
           textfieldValue={cmsPortfolioContent.bio.paragraph}
           placeholder='Bio paragraph'
-          typeOfInput='paragraph'
+          indexInArray='paragraph'
           type={subTypes.bio}
           index={null}
         />
@@ -45,8 +45,8 @@ function BioAndContacts({ classes }) {
       <CustomCmsTextField
         textfieldValue={cmsPortfolioContent.tabSectionTitles[3].subSections[1].tabTitle}
         placeholder={''}
-        typeOfInput={3}
-        additionalProp={1}
+        indexInArray={3}
+        deeperIndexInArray={1}
         type={type}
         index={null}
       />
@@ -55,8 +55,8 @@ function BioAndContacts({ classes }) {
           <CustomCmsTextField
             textfieldValue={cmsPortfolioContent.contacts.email}
             placeholder='Email'
-            typeOfInput='email'
-            type={subTypes.bio}
+            indexInArray='email'
+            type={subTypes.contacts}
             index={null}
           />
         </Grid>
@@ -64,8 +64,8 @@ function BioAndContacts({ classes }) {
           <CustomCmsTextField
             textfieldValue={cmsPortfolioContent.contacts.linkedin}
             placeholder='Linkedin'
-            typeOfInput='linkedin'
-            type={subTypes.bio}
+            indexInArray='linkedin'
+            type={subTypes.contacts}
             index={null}
           />
         </Grid>
@@ -73,8 +73,8 @@ function BioAndContacts({ classes }) {
           <CustomCmsTextField
             textfieldValue={cmsPortfolioContent.contacts.github}
             placeholder='Github'
-            typeOfInput='github'
-            type={subTypes.bio}
+            indexInArray='github'
+            type={subTypes.contacts}
             index={null}
           />
         </Grid>

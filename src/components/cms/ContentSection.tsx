@@ -1,9 +1,8 @@
 import React from 'react'
-import { TextField, Grid, Button } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
 import SectionWrapper from './SectionWrapper';
 import CmsTextFields, { CustomCmsTextField } from './CmsTextFields';
-import  useModifyContent from '../../hooks/useModifyContent';
 import { Captions } from '../../pages/Cms';
 import { useDispatch, useSelector } from 'react-redux';
 import { NEW_ADDITION_TO_CMS_CONTENT } from '../../actions/constants'
@@ -24,8 +23,8 @@ function ContentSection() {
       <CustomCmsTextField
         textfieldValue={cmsPortfolioContent.tabSectionTitles[2].subSections[0].tabTitle}
         placeholder={''}
-        typeOfInput={2}
-        additionalProp={0}
+        indexInArray={2}
+        deeperIndexInArray={0}
         type='tabSectionTitles'
         index={null}
       />
@@ -43,12 +42,12 @@ function ContentSection() {
                   {
                     textfieldValue: tec.icon,
                     placeholder: 'Tech icon URL',
-                    typeOfInput: 'icon'
+                    indexInArray: 'icon'
                   },
                   {
                     textfieldValue: tec.alt,
                     placeholder: 'Name of tech',
-                    typeOfInput: 'alt'
+                    indexInArray: 'alt'
                   }
                 ]}
                 index={index}
@@ -66,8 +65,8 @@ function ContentSection() {
       <CustomCmsTextField
         textfieldValue={cmsPortfolioContent.tabSectionTitles[2].subSections[1].tabTitle}
         placeholder={''}
-        typeOfInput={2}
-        additionalProp={1}
+        indexInArray={2}
+        deeperIndexInArray={1}
         type='tabSectionTitles'
         index={null}
       />
@@ -85,12 +84,12 @@ function ContentSection() {
                   {
                     textfieldValue: image.url,
                     placeholder: 'Image URL',
-                    typeOfInput: 'url'
+                    indexInArray: 'url'
                   },
                   {
                     textfieldValue: image.alt,
                     placeholder: 'Title',
-                    typeOfInput: 'alt'
+                    indexInArray: 'alt'
                   }
                 ]}
                 index={index}
@@ -107,8 +106,8 @@ function ContentSection() {
       <CustomCmsTextField
         textfieldValue={cmsPortfolioContent.tabSectionTitles[2].subSections[2].tabTitle}
         placeholder={''}
-        typeOfInput={2}
-        additionalProp={2}
+        indexInArray={2}
+        deeperIndexInArray={2}
         type='tabSectionTitles'
         index={null}
       />
@@ -126,12 +125,12 @@ function ContentSection() {
                   {
                     textfieldValue: image.url,
                     placeholder: 'Tech icon URL',
-                    typeOfInput: 'url'
+                    indexInArray: 'url'
                   },
                   {
                     textfieldValue: image.alt,
                     placeholder: 'Title',
-                    typeOfInput: 'alt'
+                    indexInArray: 'alt'
                   }
                 ]}
                 index={index}
