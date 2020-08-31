@@ -1,6 +1,6 @@
 //~ fetching to server
 export const fetchContentData = async (credentials) => {
-  const res = await fetch('http://localhost:8080/contentdata',
+  const res = await fetch('http://localhost:8080/contentdatalogin',
     {
       method: 'POST',
       headers: {

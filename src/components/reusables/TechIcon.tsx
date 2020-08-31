@@ -3,8 +3,8 @@ import { animated, useSpring, config } from 'react-spring'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
-function TechIcon({ indexProps, image, blurIcons, zoomOff }:
-  { indexProps, image, blurIcons, zoomOff?: boolean, }) {
+function TechIcon({ index, indexProps, techProps, blurIcons, zoomOff, setIconHoveringOver }:
+  { index, indexProps, techProps, blurIcons, zoomOff?: boolean, setIconHoveringOver?: Function }) {
   const { scale, marginLeft, marginRight } = indexProps
   const [mouseOverIcon, setMouseOverIcon] = useState(false)
   const iconScaleProps = useSpring({
@@ -23,6 +23,7 @@ function TechIcon({ indexProps, image, blurIcons, zoomOff }:
     if (zoomOff) return
     setMouseOverIcon(true)
     blurIcons(true)
+    // setIconHoveringOver(index)
   }
 
   const onMouseLeave = () => {
@@ -42,8 +43,8 @@ function TechIcon({ indexProps, image, blurIcons, zoomOff }:
       >
         <LazyLoadImage
           // className={`tech-icon ${zoomLevelClassName}`}
-          alt={image.title}
-          src={image.src}
+          alt={techProps.title}
+          src={techProps.icon}
           height={80}
           width={80}
           effect='blur'

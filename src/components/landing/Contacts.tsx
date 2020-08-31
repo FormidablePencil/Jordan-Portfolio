@@ -1,7 +1,9 @@
 import React from 'react'
-import { contacts } from '../../constants/staticData'
+// import { contacts } from '../../constants/staticData'
 import { Grid, Input, Button, Container, TextareaAutosize, makeStyles, Typography } from '@material-ui/core'
 import { GridScreenHeight, GridFlex } from '../../styles/customMaterialUiComp'
+import { useSelector } from 'react-redux';
+import { rootT } from '../../storeConfig';
 
 const useStyles = makeStyles((theme) => ({
   paddingVertical: {
@@ -29,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Contacts() {
+  const { contacts } = useSelector((state: rootT) => state.portfolioContent)
+
   const classes = useStyles();
 
   return (

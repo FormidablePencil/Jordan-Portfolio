@@ -1,7 +1,12 @@
 import React from 'react'
 import { Grid, Typography, Container } from '@material-ui/core'
 import { GridScreenHeight } from '../../styles/customMaterialUiComp';
+import { useSelector } from 'react-redux';
+import { rootT } from '../../storeConfig';
+
 function Intro() {
+  const introParagraph = useSelector((state: rootT) => state.portfolioContent.introParagraph)
+console.log(introParagraph, 'introParagraph');
   return (
     <Container>
       <GridScreenHeight
@@ -10,10 +15,8 @@ function Intro() {
         spacing={2}>
         <Grid item xs={6}>
           <Typography variant='body1' align="center">
-            Lorem ipsum dolor sit amet consectetur
-            ipsum quae nulla, at porro volupta
-            ipsum quae nulla, at porro voluptas, corrupti cumque?
-        </Typography>
+            {introParagraph}
+          </Typography>
         </Grid>
       </GridScreenHeight>
     </Container>

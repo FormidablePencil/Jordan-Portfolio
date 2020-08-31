@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
-import { demoTechContent } from '../../constants/staticData';
 import ReactPlayer from 'react-player'
 import TechIcon from '../reusables/TechIcon';
 import { useSpring, config, animated } from 'react-spring';
 import { withStyles, Grid } from '@material-ui/core';
 import { GridScreenHeight } from '../../styles/customMaterialUiComp';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { rootT } from '../../storeConfig';
 
 const DemoTech = () => {
+  const techStack = useSelector((state: rootT) => state.portfolioContent.tech)
   const slowFadeInVidAnim = { mass: 10, tension: 200, friction: 102 }
+  const [iconHoveringOver, setIconHoveringOver] = useState(0)
   const [iconsBlur, setIconsBlur] = useState(false)
   const iconsBlurProps = useSpring({
     opacity: iconsBlur ? .3 : 1,
@@ -20,18 +23,17 @@ const DemoTech = () => {
     config: iconsBlur ? slowFadeInVidAnim : config.slow,
   })
 
-
   const calcImgZoom = (index): { scale, marginLeft, marginRight } => {
     let scale = 'scale(1.3)'
     let marginLeft = '1em'
     let marginRight = '1em'
-    if (demoTechContent.length === 3) {
+    if (techStack.length === 3) {
       if (index === 0 || index === 2) {
         scale = 'scale(1)'
         marginLeft = '.3em'
         marginRight = '.3em'
       }
-    } else if (demoTechContent.length === 4) {
+    } else if (techStack.length === 4) {
       if (index === 0 || index === 3) {
         scale = 'scale(1)'
         marginLeft = '.3em'
@@ -53,14 +55,17 @@ const DemoTech = () => {
             width='100%'
             playing={true}
             loop={true}
-            url={demoTechContent[0].video} />
+            url={techStack[iconHoveringOver].video} />
         </VidContainer>
         <IconContainer style={iconsBlurProps}>
-          {demoTechContent.map((image, index) =>
+          {techStack.map((techProps, index) =>
             <TechIcon
-              image={image}
+              setIconHoveringOver={setIconHoveringOver}
+              techProps={techProps}
               blurIcons={blurIcons}
-              indexProps={calcImgZoom(index)} />
+              indexProps={calcImgZoom(index)}
+              index={index}
+            />
           )}
         </IconContainer>
         {/* </animated.div> */}

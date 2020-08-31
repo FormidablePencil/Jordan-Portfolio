@@ -1,0 +1,3 @@
+export const SAVE_FETCH_CONTENT = 'SAVE_FETCH_CONTENT'
+
+

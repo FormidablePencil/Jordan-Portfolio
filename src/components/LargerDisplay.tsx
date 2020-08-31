@@ -19,8 +19,7 @@ function LargerDisplay() {
       </NavTabsWrapper>
       <NavTabsWrapper
         tabColor='white'
-        bgImg={{ src: require('../assets/images/bgWhite2.jpg'), alt: '' }}
-        stickyBackgroundBgColor={'red'}>
+        bgImg={{ src: require('../assets/images/bgWhite2.jpg'), alt: '' }}>
         <Container maxWidth='md' >
           <div style={{ height: '100vh' }}>
             <DemoTech />

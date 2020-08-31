@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, Input, Button, makeStyles } from '@material-ui/core';
-import { fetchContentData } from './fetching';
-
-const useStyles = makeStyles((theme) => ({
-  cmsBackground: {
-    backgroundColor: '#8B8B8B',
-    width: '50em'
-  },
-  loginSection: {
-    borderRadius: '.2em',
-    backgroundColor: '#333333',
-    position: "absolute",
-    right: 25,
-    width: 300,
-    top: 30,
-  },
-}));
+import { fetchContentData } from '../../actions/fetching';
 
 const Login = ({ loggedIn, controlledAuth, setControlledAuth, setPortfolioData }) => {
   const classes = useStyles();
@@ -52,3 +37,14 @@ const Login = ({ loggedIn, controlledAuth, setControlledAuth, setPortfolioData }
 }
 
 export default Login
+
+const useStyles = makeStyles((theme) => ({
+  loginSection: {
+    borderRadius: '.2em',
+    backgroundColor: '#D2D2D2',
+    position: "fixed",
+    right: 25,
+    width: 300,
+    top: 30,
+  },
+}));

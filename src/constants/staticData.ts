@@ -2,14 +2,14 @@
 export const demoTechContent = [
   {
     title: 'Adobe Premiere Pro',
-    src: require('../assets/images/pr_cc_app_RGB.svg'),
+    src: 'https://jordans-assets.s3.us-east-2.amazonaws.com/pr_cc_app_RGB.svg',
     video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
     // height: '220px',
     // width: '220px',
   },
   {
     title: 'Adobe Photoshop',
-    src: require('../assets/images/photoshop-mobile.svg'),
+    src: 'https://jordans-assets.s3.us-east-2.amazonaws.com/photoshop-mobile.svg',
     video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
     // height: '220px',
     // width: '220px',
@@ -29,6 +29,8 @@ export const demoTechContent = [
   //   // width: '220px',
   // },
 ] // add more tech to showcase because the aim is to show capability of many technologies, which is neccessary in this day in age.
+
+//~ get from redux
 
 export const profile = {
   src: require('../assets/images/jordanSheets.jpg'),

@@ -213,6 +213,8 @@ NavTabsWrapper.propTypes = {
   uniqueTabTitle: PropTypes.string.isRequired,
 }
 NavTabsWrapper.defaultProps = {
-  stickyBackgroundBgColor: 'linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(53,9,121,1) 0%, rgba(0,255,181,1) 100%)',
-  tabColor: 'rgba(53,9,121,1)'
+  stickyBackgroundBgColor: 'white',
+  tabColor: 'white',
+  // stickyBackgroundBgColor: 'linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(53,9,121,1) 0%, rgba(0,255,181,1) 100%)',
+  // tabColor: 'rgba(53,9,121,1)'
 }

@@ -31,8 +31,9 @@ function TechStack() {
           <TechIcon
             zoomOff={true}
             key={index}
-            image={iconsProps}
+            techProps={iconsProps}
             blurIcons={blurIcons}
+            index={index}
             indexProps={calcIconZoomAndMargin(index)}
           />
         )}

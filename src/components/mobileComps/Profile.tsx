@@ -1,8 +1,10 @@
 import React from 'react'
 import { Grid, Typography, Hidden, Container, makeStyles } from '@material-ui/core'
-import { profile1, profile } from '../../constants/staticData';
+import { profile } from '../../constants/staticData';
 import styled from 'styled-components';
 import { GridFlex } from '../../styles/customMaterialUiComp';
+import { useSelector } from 'react-redux';
+import { rootT } from '../../storeConfig';
 
 const RelativeProfileImgBox = styled.div`
   position: relative;
@@ -39,9 +41,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Profile() {
+  const { title, paragraph } = useSelector((state: rootT) => state.portfolioContent.bio)
+
+
   const classes = useStyles();
   const imgProps = {
-    src: profile.src,
+    src: profile.src, //~ get from redux
     alt: 'profile',
     style: {
       objectPosition: profile.objectPosition,
@@ -53,10 +58,10 @@ function Profile() {
       <Grid className={classes.gridResponsiveHeight} container direction='row' wrap='nowrap' spacing={5} alignItems='center' justify='space-around'>
         <GridFlex item container direction='column' justify='center' spacing={1}>
           <Grid item container justify='center'>
-            <Typography variant='h4' color='textPrimary'>{profile1.title}</Typography>
+            <Typography variant='h4' color='textPrimary'>{title}</Typography>
           </Grid>
           <Grid item container alignItems='center'>
-            <Typography variant='body1' color='textPrimary' align='justify'>{profile1.body}</Typography>
+            <Typography variant='body1' color='textPrimary' align='justify'>{paragraph}</Typography>
           </Grid>
         </GridFlex>
         <Hidden xsDown>

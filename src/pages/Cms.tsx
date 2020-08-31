@@ -1,34 +1,19 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Input, Grid, Typography, makeStyles, Button, Container } from '@material-ui/core'
+import { Grid, Typography, makeStyles, Button, Container, TextareaAutosize, TextField } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
-import { updateContent } from '../components/cms/fetching';
+import { updateContent } from '../actions/fetching';
 import Login from '../components/cms/Login';
+import { GridFlex } from '../styles/customMaterialUiComp';
+import { portfolioContentT } from '../types/generic';
+import { initialPortfolioContent, pfcDefaults } from '../reducers/portfolioContentReducer';
+import ContentSection from '../components/cms/ContentSection';
+import BioAndContacts from '../components/cms/BioAndContacts';
 
 function Cms() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [controlledAuth, setControlledAuth] = useState({ username: '', password: '' })
-
-  const defaults = {
-    introParagraph: '',
-    videoProjects: { url: '', alt: '' },
-    tech: { icon: '', video: '' },
-    moreTech: { icon: '', alt: '' },
-    photoshop: { url: '', alt: '' },
-    bio: { title: '', paragraph: '' },
-    contacts: { email: '', github: '', linkedin: '' },
-
-  }
-  const [portfolioData, setPortfolioData] = useState({
-    introParagraph: defaults.introParagraph,
-    videoProjects: [defaults.videoProjects],
-    tech: [defaults.tech],
-    moreTech: [defaults.moreTech],
-    photoshop: [defaults.photoshop],
-    bio: defaults.bio,
-    contacts: defaults.contacts
-  })
+  const [portfolioData, setPortfolioData] = useState<portfolioContentT>(initialPortfolioContent)
   const [portfolioDataChanged, setPortfolioDataChanged] = useState<boolean | 'err'>(false)
-
   const renderCount = useRef(0)
   useEffect(() => {
     if (renderCount.current === 1) //when page loads the state won't be toggled
@@ -36,12 +21,22 @@ function Cms() {
     else renderCount.current = 1
   }, [portfolioData])
 
-  const onChangeValue = ({ type, index, input, value }: {
-    type, index, input, value, additionalProp?: string
+  const onChangeValue = ({ type, index, input, value, additionalProp }: {
+    type, index, input, value, additionalProp?: number,
   }) => {
     let otherInput: string
 
     switch (type) {
+      case 'tabSectionTitles':
+        setPortfolioData(state => {
+          const updatedState = [...state[type]] // So const is actually not immutable
+          if (typeof additionalProp === 'number')
+            updatedState[input].subSections[additionalProp].tabTitle = value
+          else
+            updatedState[input].tabTitle = value
+          return { ...portfolioData, [type]: updatedState }
+        })
+        return
       case 'introParagraph':
         setPortfolioData({ ...portfolioData, [type]: value })
         return
@@ -77,7 +72,7 @@ function Cms() {
   const newAdditionOnClick = (type) => {
     setPortfolioData({
       ...portfolioData, [type]:
-        [...portfolioData[type], defaults[type]]
+        [...portfolioData[type], pfcDefaults[type]]
     })
   }
 
@@ -95,15 +90,18 @@ function Cms() {
 
   }
 
-  useEffect(() => {
-    // (async () => {
-    //   if (isLoggedIn) {
-    //     // const fetched = await fetch('/http')
-    //     // const { videoProjects, tech, mainTech, photoshop, bio } = fetched.json()
-    //     //set all fetched data to state
-    //   }
-    // })()
-  }, [isLoggedIn])
+  const Captions = ({ input1, input2, input3 }: { input1, input2, input3?: string }) => {
+    const width = input3 ? { width: '40em' } : { width: '25em' }
+    return (
+      <GridFlex container item justify='space-around' style={width}>
+        <Typography className={classes.caption} variant='caption'>{input1}</Typography>
+        <Typography className={classes.caption} variant='caption'>{input2}</Typography>
+        {input3 &&
+          <Typography className={classes.caption} variant='caption'>{input3}</Typography>
+        }
+      </GridFlex>
+    )
+  }
 
   return (
     <Container>
@@ -116,29 +114,39 @@ function Cms() {
           setControlledAuth={setControlledAuth}
         />
 
+        <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[0].tabTitle}
+          onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 0, value: e.target.value })}
+        />
         <Grid item>
-          <Typography variant='body1'>Home Tab:</Typography>
-          <Input
+          <TextareaAutosize
+            className={classes.textAreaLarge}
+            rows={5}
             value={portfolioData.introParagraph}
-            placeholder='title...'
+            placeholder='Paragraph...'
             onChange={(e) => onChangeValue({
               type: 'introParagraph',
-              index: false,
+              index: null,
               input: 'paragraph',
               value: e.target.value,
             })} />
         </Grid>
 
-        <Typography variant='body1'>Tech Stack:</Typography>
+        {/* <Typography className={classes.largeCaption} variant='body1'>Tech Stack:</Typography> */}
+        <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[1].tabTitle}
+          onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 1, value: e.target.value })}
+        />
         <Grid item>
+          <Captions input1='Tech icon URL' input2='Tech video URL' input3='Name of tech' />
           {portfolioData.tech.map((tec, index) =>
             <div key={index}>
               <div>
-                <Typography variant='body1' display='inline' style={{ marginRight: 10 }}>{index}</Typography>
-                <Input value={tec.icon} placeholder='image url'
+                <Typography variant='body1' display='inline' className={classes.index}>{index}</Typography>
+                <TextField className={classes.textField} value={tec.icon} placeholder="tech icon URL"
                   onChange={(e) => onChangeValue({ type: 'tech', index, input: 'icon', value: e.target.value })} />
-                <Input value={tec.video} placeholder='image description'
+                <TextField className={classes.textField} value={tec.video} placeholder='tech video URL'
                   onChange={(e) => onChangeValue({ type: 'tech', index, input: 'video', value: e.target.value })} />
+                <TextField className={classes.textField} value={tec.alt} placeholder='Name of tech'
+                  onChange={(e) => onChangeValue({ type: 'tech', index, input: 'alt', value: e.target.value })} />
               </div>
               {index === portfolioData.tech.length - 1 &&
                 <Button onClick={() => newAdditionOnClick('tech')}><AddIcon /></Button>}
@@ -146,74 +154,31 @@ function Cms() {
           )}
         </Grid>
 
-        <Typography variant='body1'>Other exper Tech:</Typography>
-        <Grid item>
-          {portfolioData.moreTech.map((tec, index) =>
-            <div key={index}>
-              <div>
-                <Typography variant='body1' display='inline' style={{ marginRight: 10 }}>{index}</Typography>
-                <Input value={tec.icon} placeholder='image url'
-                  onChange={(e) => onChangeValue({ type: 'moreTech', index, input: 'icon', value: e.target.value })} />
-                <Input value={tec.alt} placeholder='image description'
-                  onChange={(e) => onChangeValue({ type: 'moreTech', index, input: 'alt', value: e.target.value })} />
-              </div>
-              {index === portfolioData.moreTech.length - 1 &&
-                <Button onClick={() => newAdditionOnClick('moreTech')}><AddIcon /></Button>}
-            </div>
-          )}
-        </Grid>
+        <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[2].tabTitle}
+          onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 2, value: e.target.value })}
+        />
+        <div style={{ marginLeft: '2em' }}>
+          <ContentSection
+            classes={classes}
+            newAdditionOnClick={newAdditionOnClick}
+            onChangeValue={onChangeValue}
+            Captions={Captions}
+            portfolioData={portfolioData} />
+        </div>
 
-        <Typography variant='body1'>Photoshop projects:</Typography>
-        <Grid item>
-          {portfolioData.photoshop.map((image, index) =>
-            <div key={index}>
-              <div>
-                <Typography variant='body1' display='inline' style={{ marginRight: 10 }}>{index}</Typography>
-                <Input value={image.url} placeholder='image url'
-                  onChange={(e) => onChangeValue({ type: 'photoshop', index, input: 'url', value: e.target.value })} />
-                <Input value={image.alt} placeholder='image description'
-                  onChange={(e) => onChangeValue({ type: 'photoshop', index, input: 'alt', value: e.target.value })} />
-              </div>
-              {index === portfolioData.photoshop.length - 1 &&
-                <Button onClick={() => newAdditionOnClick('photoshop')}><AddIcon /></Button>}
-            </div>
-          )}
-        </Grid>
-
-        <Typography variant='body1'>Video projects:</Typography>
-        <Grid item>
-          {portfolioData.videoProjects.map((image, index) =>
-            <div key={index}>
-              <div>
-                <Typography variant='body1' display='inline' style={{ marginRight: 10 }}>{index}</Typography>
-                <Input value={image.url} placeholder='image url'
-                  onChange={(e) => onChangeValue({ type: 'videoProjects', index, input: 'url', value: e.target.value })} />
-                <Input value={image.alt} placeholder='image description'
-                  onChange={(e) => onChangeValue({ type: 'videoProjects', index, input: 'alt', value: e.target.value })} />
-              </div>
-              {index === portfolioData.videoProjects.length - 1 &&
-                <Button onClick={() => newAdditionOnClick('videoProjects')}><AddIcon /></Button>}
-            </div>
-          )}
-        </Grid>
-
-        <Grid item>
-          <Typography variant='body1'>Bio:</Typography>
-          <Input value={portfolioData.bio.title} placeholder='bio title'
-            onChange={(e) => onChangeValue({ type: 'videoProjects', index: false, input: 'title', value: e.target.value })} />
-          <Input value={portfolioData.bio.paragraph} placeholder='bio paragraph'
-            onChange={(e) => onChangeValue({ type: 'videoProjects', index: false, input: 'paragraph', value: e.target.value })} />
-        </Grid>
-
-        <Grid item container direction='column'>
-          <Typography variant='body1'>Contacts:</Typography>
-          <Input value={portfolioData.contacts.email} placeholder='Email:'
-            onChange={(e) => onChangeValue({ type: 'contacts', index: false, input: 'email', value: e.target.value })} />
-          <Input value={portfolioData.contacts.linkedin} placeholder='LinkedIn:'
-            onChange={(e) => onChangeValue({ type: 'contacts', index: false, input: 'linkedin', value: e.target.value })} />
-          <Input value={portfolioData.contacts.github} placeholder='GitHub:'
-            onChange={(e) => onChangeValue({ type: 'contacts', index: false, input: 'github', value: e.target.value })} />
-        </Grid>
+        <TextField className={classes.largeCaption} value={portfolioData.tabSectionTitles[3].tabTitle}
+          onChange={(e) => onChangeValue({ type: 'tabSectionTitles', index: null, input: 3, value: e.target.value })}
+        />
+        <div style={{ marginLeft: '2em' }}>
+          <BioAndContacts
+            onClickSubmit={onClickSubmit}
+            portfolioDataChanged={portfolioDataChanged}
+            classes={classes}
+            newAdditionOnClick={newAdditionOnClick}
+            onChangeValue={onChangeValue}
+            Captions={Captions}
+            portfolioData={portfolioData} />
+        </div>
 
         <Grid item>
           <Button className={
@@ -227,6 +192,7 @@ function Cms() {
             {portfolioDataChanged === 'err' ? '!' : portfolioDataChanged ? 'Save' : 'Saved'}
           </Button>
         </Grid>
+
       </Grid>
     </Container >
   )
@@ -236,16 +202,11 @@ export default Cms
 
 const useStyles = makeStyles((theme) => ({
   cmsBackground: {
-    backgroundColor: '#8B8B8B',
-    width: '50em'
-  },
-  loginSection: {
-    borderRadius: '.2em',
-    backgroundColor: '#333333',
-    position: "absolute",
-    right: 25,
-    width: 300,
-    top: 30,
+    backgroundColor: '#E8E8E8',
+    width: '50em',
+    marginTop: '2em',
+    marginBottom: '2em',
+    padding: '.2em'
   },
   saveContentBtn: {
     backgroundColor: 'green',
@@ -264,5 +225,27 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: '1em',
     right: '1em',
+  },
+  index: {
+    marginRight: 10,
+    marginTop: '.2em',
+    display: 'inline-block'
+  },
+  caption: {
+    color: '#1182B0'
+  },
+  largeCaption: {
+    color: '#062F40',
+    maxWidth: '10em',
+    marginLeft: '.2em'
+  },
+  textField: {
+    marginRight: '10px',
+  },
+  textAreaLarge: {
+    width: '30em'
+  },
+  marginLeft: {
+    marginLeft: '1em'
   }
 }));
