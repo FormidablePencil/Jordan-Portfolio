@@ -1,6 +1,7 @@
 import React, { cloneElement, Children, useState, useEffect } from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import PropTypes from 'prop-types';
+import { Typography, Button } from '@material-ui/core';
 
 
 
@@ -9,7 +10,7 @@ interface scrollableTabsChildrenT {
   overrideTabsStyle: {}, saveTitlesToSourceOfTrue: Function,
 }
 const ScrollableTabsWrapper = (props: any) => {
-  const { children, navbarColor, heightOfTabs, tabLeftOfsetBy, extraTopSpace, overrideTabsStyle } = props
+  const { children, navbarColor, heightOfTabs, tabLeftOfsetBy, extraTopSpace, overrideTabsStyle, tabSectionTitles } = props
   const [arrUniqueTabTitles, setArrUniqueTabTitles] = useState<any>([])
 
   const saveTitlesToSourceOfTrue = async (index, title) => {
@@ -44,9 +45,12 @@ const ScrollableTabsWrapper = (props: any) => {
   return (
     <div>
       <Navbar
+        getNavTabPositioningHelper={getNavTabPositioningHelper}
         extraTopSpace={extraTopSpace}
         heightOfTabs={heightOfTabs}
-        navbarColor={navbarColor} />
+        navbarColor={navbarColor}
+        tabSectionTitles={tabSectionTitles}
+      />
       <div>
         {childrenWithAdditionalProps}
       </div>
@@ -57,7 +61,7 @@ const ScrollableTabsWrapper = (props: any) => {
 
 
 const Navbar = (props) => {
-  const { navbarColor, heightOfTabs, extraTopSpace } = props
+  const { navbarColor, heightOfTabs, extraTopSpace, tabSectionTitles, getNavTabPositioningHelper } = props
   return (
     <div style={{
       zIndex: 19,
@@ -65,8 +69,49 @@ const Navbar = (props) => {
       height: heightOfTabs + extraTopSpace,
       width: '100%',
       backgroundColor: navbarColor,
+      display: 'flex',
+      alignItems: 'flex-end'
     }}>
-      hey from navbar
+      {tabSectionTitles.map((tabSectionTitle, index) =>
+        /* //~ pressable btn, standard but also match theme, justified evenly right behind of tabs */
+        <AnchorLink
+          style={{
+            position: 'absolute',
+            width: 130,
+            left: getNavTabPositioningHelper({ index }),
+            height: '1.5em',
+            marginBottom: '.4em',
+            display: 'flex',
+            fontSize: '1em',
+            justifyContent: 'center'
+          }}
+          href={`#${tabSectionTitle}`}>
+          <Typography color='textPrimary' variant='body1' style={{
+            backgroundColor: '#C9C9C9',
+            width: '97%',
+            borderRadius: '.35em',
+            textAlign: 'center'
+          }}>
+            {tabSectionTitle}
+          </Typography>
+        </AnchorLink>
+      )}
+      <Button
+        style={{
+          textTransform: 'none',
+          position: 'absolute',
+          width: 130,
+          right: 50,
+          height: '1.5em',
+          marginBottom: '.4em',
+          display: 'flex',
+          fontSize: '1em',
+          justifyContent: 'center',
+          backgroundColor: '#8AC8AD',
+        }}
+      >
+        Resume
+      </Button>
     </div>
   )
 }
@@ -114,7 +159,7 @@ const NavTabsWrapper = (props) => {
           top: heightOfTabs + extraTopSpace,
           zIndex: 20,
         }}>
-        <div style={{ position: 'absolute', backgroundColor: 'white', height: '1em', width: '100vw', zIndex: 100 }} />
+        <div style={{ position: 'absolute', backgroundColor: 'white', height: '1em', width: '100%', zIndex: 100 }} />
         <AnchorLink
           style={{ //Tab
             zIndex: 30,
@@ -131,7 +176,9 @@ const NavTabsWrapper = (props) => {
             ...overrideTabsStyle,
           }}
           href={`#${anchor}`}>
-          {anchor}
+          <Typography variant='body1' color='textPrimary'>
+            {anchor}
+          </Typography>
         </AnchorLink>
       </div>
       <div style={{ //sticky background
@@ -187,6 +234,7 @@ ScrollableTabsWrapper.propTypes = {
   overrideTabsStyle: PropTypes.string,
   navbarColor: PropTypes.string,
   extraTopSpace: PropTypes.number,
+  tabSectionTitles: PropTypes.array.isRequired
 }
 ScrollableTabsWrapper.defaultProps = {
   heightOfTabs: defaultHeightOfTabs,
@@ -196,7 +244,9 @@ ScrollableTabsWrapper.defaultProps = {
 Navbar.propTypes = {
   navbarColor: PropTypes.string,
   heightOfTabs: PropTypes.number,
-  extraTopSpace: PropTypes.number.isRequired
+  extraTopSpace: PropTypes.number.isRequired,
+  tabSectionTitles: PropTypes.array.isRequired,
+  getNavTabPositioningHelper: PropTypes.func
 }
 Navbar.defaultProps = {
   navbarColor: PropTypes.string.isRequired,
