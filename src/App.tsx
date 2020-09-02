@@ -3,8 +3,7 @@ import './styles/main.sass'
 import Landing from './pages/Landing';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from './styles/themeStyles';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Cms from './pages/Cms';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from './storeConfig';
 // import { isMobileScreenDimensions } from './helperFuncs';
@@ -18,14 +17,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Switch>
-            <Route exact path='/'>
-              <Landing />
-            </Route>
-            <Route path='/cms'>
-              <Cms />
-            </Route>
-          </Switch>
+          <Landing />
         </BrowserRouter>
       </ThemeProvider>
     </Provider>

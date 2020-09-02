@@ -1,8 +1,6 @@
 import React from 'react'
-import { Grid, makeStyles, Typography, Container } from '@material-ui/core'
+import { Grid, makeStyles, Typography } from '@material-ui/core'
 import ReactPlayer from 'react-player/youtube'
-import { demoTechContent } from '../../../constants/staticData'
-
 
 const useStyles = makeStyles((theme) => ({
   demoTechContent: {
