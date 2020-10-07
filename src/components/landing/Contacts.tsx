@@ -40,45 +40,52 @@ function Contacts() {
       <GridScreenHeight
         className={classes.paddingVertical}
         container direction='column' alignItems='center' justify='space-around' wrap='nowrap'>
-        <div style={{ height: '5em' }} />
-        <Grid item container direction='column'>
-          <Grid item container direction='column'>
-            <GridFlex item container>
-              <Input className={classes.inputStyles} placeholder='Name' />
-            </GridFlex>
-            <GridFlex item container>
-              <Input className={classes.inputStyles} placeholder='Email' />
-            </GridFlex>
-          </Grid>
-          <TextareaAutosize className={classes.textAreaMargin} rows='6' />
-          <Grid item container justify='flex-end'>
-            <Button className={classes.btnSubmit} disableElevation variant='contained'>Submit</Button>
-          </Grid>
-        </Grid>
-
-        <Grid item container justify='center'>
-          <Typography variant='h4' color='textPrimary'>or</Typography>
-        </Grid>
 
         <Grid className={classes.compensateForBtnOverSection}
-          item container direction='column' alignItems='center'>
-          <Grid item container alignItems='center' justify='center' spacing={3}>
-            <GridFlex item container justify='flex-end'>
+          item container direction='column' justify='center'>
+
+          {/* //~ ==== links ==== */}
+          <Grid item container spacing={3} justify='center' alignItems='center'>
+            <Grid item container xs={1}>
               <Typography className={classes.fixedHeightContactTitle} variant='h6' color='textPrimary'>Email:</Typography>
-            </GridFlex>
-            <GridFlex item>
-              <Typography variant='body1' color='textPrimary'>{contacts.email}</Typography>
-            </GridFlex>
+            </Grid>
+            <Grid item>
+              <Typography variant='body1' color='textPrimary'>sdsddsdsdsdsdsdddsddd{contacts.email}</Typography>
+            </Grid>
           </Grid>
-          <Grid item container alignItems='center' justify='center' spacing={3}>
-            <GridFlex item container justify='flex-end'>
+
+          <Grid item container spacing={3} justify='center' alignItems='center'>
+            <Grid item container xs={1}>
               <Typography className={classes.fixedHeightContactTitle} variant='h6' color='textPrimary'>Github:</Typography>
-            </GridFlex>
-            <GridFlex item>
-              <Typography variant='body1' color='textPrimary'>{contacts.github}</Typography>
-            </GridFlex>
+            </Grid>
+            <Grid item>
+              <Typography variant='body1' color='textPrimary'>sdsddsdsdsdsdsdddsddd{contacts.github}</Typography>
+            </Grid>
+
           </Grid>
-          <Button className={classes.btnEmail} disableElevation variant='contained'>Redirect to email</Button>
+
+          {/* //~ ==== message section ==== */}
+          <div style={{ height: '5em' }} />
+          <Grid item container direction='column'>
+            <Grid item container direction='column'>
+              <GridFlex item container>
+                <Input className={classes.inputStyles} placeholder='Name' />
+              </GridFlex>
+              <GridFlex item container>
+                <Input className={classes.inputStyles} placeholder='Email' />
+              </GridFlex>
+            </Grid>
+            <TextareaAutosize className={classes.textAreaMargin} rows='6' />
+            <Grid item container justify='flex-end'>
+              <Button className={classes.btnSubmit} disableElevation variant='contained'>Submit</Button>
+            </Grid>
+          </Grid>
+
+          {/* <Grid item container justify='center'>
+          <Typography variant='h4' color='textPrimary'>or</Typography>
+        </Grid> */}
+
+          {/* <Button className={classes.btnEmail} disableElevation variant='contained'>Redirect to email</Button> */}
         </Grid>
       </GridScreenHeight>
     </Container>

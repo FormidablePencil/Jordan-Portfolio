@@ -52,7 +52,6 @@ function LargerDisplay() {
         anchor={portfolioContent.tabSectionTitles[3].tabTitle}
         bgImg={{ src: require('../assets/images/bgWhite4.jpg'), alt: '' }}>
         <Container maxWidth='md'>
-          <Profile />
           <Contacts />
         </Container>
       </NavTabsWrapper>

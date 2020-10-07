@@ -51,8 +51,9 @@ function DemoProjects({ height }) {
         <SwipeableViews index={index.index} onChangeIndex={handleChangeIndex}>
           <SectionBox justifyContent='center' alignItems='center'>
             <Container
+              disableGutters
               className={classes.container}
-              style={{ height: heightMinusSomeMarginTExper }}
+              style={{ height: heightMinusSomeMargin }}
             >
               <ContentSectionImages />
             </Container>
