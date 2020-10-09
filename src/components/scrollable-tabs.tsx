@@ -207,7 +207,7 @@ const NavTabsWrapper = (props) => {
           {props.children}
         </div>
         {bgImg &&
-          <img style={{  width: '100vw', zIndex: -1 }} src={bgImg.src} alt='' />
+          <img style={{  width: '100vw', height: '100vh', zIndex: -1, objectFit: 'cover' }} src={bgImg.src} alt='' />
         }
       </div>
 

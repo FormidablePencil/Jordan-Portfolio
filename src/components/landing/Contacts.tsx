@@ -46,7 +46,7 @@ function Contacts() {
 
           {/* //~ ==== links ==== */}
           <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
-            <Grid item container lg={2}>
+            <Grid item container xl={2}>
               <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>Email:</Typography>
             </Grid>
             <Grid item container>
@@ -55,7 +55,7 @@ function Contacts() {
           </Grid>
 
           <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
-            <Grid item container lg={2}>
+            <Grid item container xl={2}>
               <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>LinkedIn: </Typography>
             </Grid>
             <Grid item container>
@@ -64,7 +64,7 @@ function Contacts() {
           </Grid>
           
           <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
-            <Grid item container lg={2}>
+            <Grid item container xl={2}>
               <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>Github: </Typography>
             </Grid>
             <Grid item container>
