@@ -2,7 +2,7 @@ import React, { cloneElement, Children, useState, useEffect } from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import PropTypes from 'prop-types';
 import { Typography, Button } from '@material-ui/core';
-
+import { barColor } from '../styles/themeStyles';
 
 
 interface scrollableTabsChildrenT {
@@ -68,7 +68,9 @@ const Navbar = (props) => {
       position: 'fixed',
       height: heightOfTabs + extraTopSpace,
       width: '100%',
-      backgroundColor: navbarColor,
+      // backgroundColor: navbarColor,
+      background: '#152531',
+      // background: 'linear-gradient(175deg, rgba(30,55,75,1) 0%, rgba(39,77,108,1) 12%)',
       display: 'flex',
       alignItems: 'flex-end'
     }}>
@@ -87,7 +89,7 @@ const Navbar = (props) => {
           }}
           href={`#${tabSectionTitle}`}>
           <Typography color='textPrimary' variant='body1' style={{
-            backgroundColor: '#C9C9C9',
+            backgroundColor: '#63DCB9',
             width: '97%',
             borderRadius: '.35em',
             textAlign: 'center'
@@ -107,7 +109,7 @@ const Navbar = (props) => {
           display: 'flex',
           fontSize: '1em',
           justifyContent: 'center',
-          backgroundColor: '#8AC8AD',
+          backgroundColor: '#B8DDCE',
         }}
       >
         Resume
@@ -159,7 +161,7 @@ const NavTabsWrapper = (props) => {
           top: heightOfTabs + extraTopSpace,
           zIndex: 20,
         }}>
-        <div style={{ position: 'absolute', backgroundColor: 'white', height: '1em', width: '100%', zIndex: 100 }} />
+        <div style={{ position: 'absolute', backgroundColor: barColor, height: '.5em', width: '100%', zIndex: 100 }} />
         <AnchorLink
           style={{ //Tab
             zIndex: 30,
@@ -176,7 +178,7 @@ const NavTabsWrapper = (props) => {
             ...overrideTabsStyle,
           }}
           href={`#${anchor}`}>
-          <Typography variant='body1' color='textPrimary'>
+          <Typography variant='body1' color='textSecondary'>
             {anchor}
           </Typography>
         </AnchorLink>
@@ -191,7 +193,7 @@ const NavTabsWrapper = (props) => {
         background: stickyBackgroundBgColor,
       }}>
         {bgImg &&
-          <img style={{ height: '100%', width: '100%' }} src={bgImg.src} alt='' />
+          <img style={{ width: '100%', }} src={bgImg.src} alt='' />
         }
       </div>
       <div id={anchor} style={{
@@ -238,7 +240,7 @@ ScrollableTabsWrapper.propTypes = {
 }
 ScrollableTabsWrapper.defaultProps = {
   heightOfTabs: defaultHeightOfTabs,
-  navbarColor: '#E6E6E6',
+  navbarColor: '#221E18',
   extraTopSpace: defaultExtraTopSpace,
 }
 Navbar.propTypes = {
@@ -261,8 +263,8 @@ NavTabsWrapper.propTypes = {
   uniqueTabTitle: PropTypes.string.isRequired,
 }
 NavTabsWrapper.defaultProps = {
-  stickyBackgroundBgColor: 'white',
-  tabColor: 'white',
+  stickyBackgroundBgColor: barColor,
+  tabColor: barColor,
   // stickyBackgroundBgColor: 'linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(53,9,121,1) 0%, rgba(0,255,181,1) 100%)',
   // tabColor: 'rgba(53,9,121,1)'
 }

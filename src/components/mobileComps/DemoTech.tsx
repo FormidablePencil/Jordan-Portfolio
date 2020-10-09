@@ -76,7 +76,9 @@ const DemoTech = () => {
 
 export default DemoTech
 
-const VidContainer = styled(animated.div)``
+const VidContainer = styled(animated.div)`
+ width: 100%; height: 100%;
+ `
 const IconContainer = styled(animated.div)`
   display: flex; flex-direction: row; position: absolute;
 `

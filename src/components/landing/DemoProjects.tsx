@@ -4,6 +4,7 @@ import { Tabs, Tab, withStyles, Box, Grid, makeStyles, Container } from '@materi
 import ContentSectionImages from './projectContent/ContentSectionImages';
 import CinematographySection from './projectContent/CinematographySection';
 import TechSection from './projectContent/TechSection';
+import { barColor } from '../../styles/themeStyles';
 
 const SectionBox = withStyles({
   root: {
@@ -15,16 +16,16 @@ const SectionBox = withStyles({
 const useStyles = makeStyles((theme) => ({
   tabsContainer: {
     position: 'sticky',
-    marginTop: '-5px',
-    top: '3.8em',
+    marginTop: '-12px',
+    top: '3.2em',
     bakgroundColor: 'orange',
     height: '3em',
     width: '100%',
     zIndex: 10,
-    backgroundColor: 'grey'
+    backgroundColor: barColor
   },
   container: {
-    backgroundColor: '#E3E3E3',
+    backgroundColor: 'black',
   }
 }));
 
@@ -49,6 +50,7 @@ function DemoProjects({ height }) {
       </div>
       <Grid item>
         <SwipeableViews index={index.index} onChangeIndex={handleChangeIndex}>
+
           <SectionBox justifyContent='center' alignItems='center'>
             <Container
               disableGutters
@@ -58,13 +60,16 @@ function DemoProjects({ height }) {
               <ContentSectionImages />
             </Container>
           </SectionBox>
+
           <SectionBox justifyContent='center' alignItems='center' >
             <Container
               className={classes.container}
-              style={{ height: heightMinusSomeMargin }}>
+              style={{ height: heightMinusSomeMargin }}
+            >
               <CinematographySection />
             </Container>
           </SectionBox>
+
           <SectionBox justifyContent='center' alignItems='center' >
             <Container
               className={classes.container}
@@ -73,6 +78,7 @@ function DemoProjects({ height }) {
               <TechSection />
             </Container>
           </SectionBox>
+
         </SwipeableViews>
       </Grid>
     </Grid >

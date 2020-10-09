@@ -19,16 +19,22 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 export const theme = createMuiTheme({
   typography: {
     allVariants: {
-      fontFamily: 'Roboto-Slab-reg'
+      fontFamily: 'Roboto-Slab-reg',
+      color: '#D9D9D9',
+    },
+    body2: {
+      fontSize: '1.3em',
     }
   },
   palette: {
     text: {
-      primary: '#525252',
-      secondary: blueGrey[900],
+      primary: '#171717',
+      secondary: '#B8DDCE',
     }
   },
   responsiveHeight: {
     height: isMobileScreenDimensions() ? window.innerHeight : 'calc(100vh - 74px)',
   },
 })
+
+export const barColor = '#2E3D45'
