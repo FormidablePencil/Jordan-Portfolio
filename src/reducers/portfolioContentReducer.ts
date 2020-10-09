@@ -7,10 +7,10 @@ export const pfcDefaults = {
       tabTitle: 'Intro',
     },
     {
-      tabTitle: 'TechStack',
+      tabTitle: 'Tech Stack',
     },
     {
-      tabTitle: 'Content',
+      tabTitle: 'Projects',
       subSections: [
         { tabTitle: 'Images' },
         { tabTitle: 'Videos' },
@@ -18,7 +18,7 @@ export const pfcDefaults = {
       ]
     },
     {
-      tabTitle: 'Info & Contacts',
+      tabTitle: 'Contacts',
       subSections: [
         { tabTitle: 'Bio' },
         { tabTitle: 'Contacts' }

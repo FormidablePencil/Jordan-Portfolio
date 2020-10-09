@@ -4,7 +4,9 @@ import { Tabs, Tab, withStyles, Box, Grid, makeStyles, Container } from '@materi
 import ContentSectionImages from './projectContent/ContentSectionImages';
 import CinematographySection from './projectContent/CinematographySection';
 import TechSection from './projectContent/TechSection';
-import { barColor } from '../../styles/themeStyles';
+import { barColor, theme } from '../../styles/themeStyles';
+import darken from '@bit/styled-components.polished.color.darken';
+
 
 const SectionBox = withStyles({
   root: {
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     height: '3em',
     width: '100%',
     zIndex: 10,
-    backgroundColor: barColor
+    backgroundColor: darken(2 * .02, barColor),
   },
   container: {
     backgroundColor: 'black',
@@ -43,9 +45,23 @@ function DemoProjects({ height }) {
     <Grid item container direction='column'>
       <div className={classes.tabsContainer} >
         <Tabs value={index} onChange={handleChange}>
-          <Tab className='tab1' label="tab1 photoshop" />
-          <Tab className='tab2' label="tab2 cinematography" />
-          <Tab className='tab3' label="tab3 technologies" />
+          <Tab className='tab1'
+            style={{
+              color: index.index === 0 ? 'white'
+                : theme.palette.text.secondary
+            }} label="tabbb1 photoshop" />
+          <Tab className='tab2'
+            style={{
+              color: index.index === 1 ? 'white'
+                : theme.palette.text.secondary
+            }}
+            label="tab2 cinematography" />
+          <Tab className='tab3'
+            style={{
+              color: index.index === 2 ? 'white'
+                : theme.palette.text.secondary
+            }}
+            label="tab3 technologies" />
         </Tabs>
       </div>
       <Grid item>

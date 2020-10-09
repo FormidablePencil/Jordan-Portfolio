@@ -3,7 +3,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 import PropTypes from 'prop-types';
 import { Typography, Button } from '@material-ui/core';
 import { barColor } from '../styles/themeStyles';
-
+import darken from '@bit/styled-components.polished.color.darken';
 
 interface scrollableTabsChildrenT {
   heightOfTabs, tabLeftOffset, whereChild?: string, extraTopSpace: number, index,
@@ -69,7 +69,7 @@ const Navbar = (props) => {
       height: heightOfTabs + extraTopSpace,
       width: '100%',
       // backgroundColor: navbarColor,
-      background: '#152531',
+      background: '#3D515B',
       // background: 'linear-gradient(175deg, rgba(30,55,75,1) 0%, rgba(39,77,108,1) 12%)',
       display: 'flex',
       alignItems: 'flex-end'
@@ -161,14 +161,19 @@ const NavTabsWrapper = (props) => {
           top: heightOfTabs + extraTopSpace,
           zIndex: 20,
         }}>
-        <div style={{ position: 'absolute', backgroundColor: barColor, height: '.5em', width: '100%', zIndex: 100 }} />
+        <div style={{
+          position: 'absolute',
+          backgroundColor: darken(index * .02, barColor),
+          // backgroundColor: barColor,
+          height: '.5em', width: '100%', zIndex: 100
+        }} />
         <AnchorLink
           style={{ //Tab
             zIndex: 30,
             left: tabLeftOffset,
             height: heightOfTabs,
             width: 130,
-            backgroundColor: tabColor,
+            backgroundColor: darken(index * .02, barColor),
             alignItems: 'center',
             display: 'flex',
             justifyContent: 'center',
