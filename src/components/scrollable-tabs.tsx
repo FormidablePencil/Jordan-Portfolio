@@ -155,6 +155,12 @@ const NavTabsWrapper = (props) => {
 
   return (
     <>
+      <div id={anchor} style={{
+        zIndex: 10,
+        position: 'absolute',
+        width: widthOfContent,
+      }}>
+      </div>
       <div
         style={{
           position: 'sticky',
@@ -189,7 +195,7 @@ const NavTabsWrapper = (props) => {
         </AnchorLink>
       </div>
       <div style={{ //sticky background
-        zIndex: -1,
+        zIndex: 3,
         width: widthOfContent,
         marginBottom: -20,
         height: heightOfStickyAbsoluteBackground,
@@ -197,23 +203,20 @@ const NavTabsWrapper = (props) => {
         top: heightOfTabs + extraTopSpace,
         background: stickyBackgroundBgColor,
       }}>
+        <div style={{position: 'absolute', zIndex: 1, width: '100vw'}}>
+          {props.children}
+        </div>
         {bgImg &&
-          <img style={{ width: '100%', }} src={bgImg.src} alt='' />
+          <img style={{  width: '100vw', zIndex: -1 }} src={bgImg.src} alt='' />
         }
       </div>
-      <div id={anchor} style={{
-        zIndex: 10,
-        marginTop: marginTopContent,
-        position: 'relative',
-        width: widthOfContent,
-        marginBottom: whereChild !== 'last' ? heightOfTabs : 0
-      }}>
-        {props.children}
-      </div>
+
     </>
   )
 }
 
+//~ When I first wrote this only god and I knew what it meant
+//~ Now only god knows
 
 
 export { NavTabsWrapper }

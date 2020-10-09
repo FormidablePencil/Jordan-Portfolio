@@ -42,30 +42,39 @@ function Contacts() {
         container direction='column' alignItems='center' justify='space-around' wrap='nowrap'>
 
         <Grid className={classes.compensateForBtnOverSection}
-          item container direction='column' justify='center'>
+          item container direction='column' style={{ width: 300 }}>
 
           {/* //~ ==== links ==== */}
-          <Grid item container spacing={3} justify='center' alignItems='center'>
-            <Grid item container xs={1}>
-              <Typography className={classes.fixedHeightContactTitle} variant='h6' color='textPrimary'>Email:</Typography>
+          <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
+            <Grid item container lg={2}>
+              <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>Email:</Typography>
             </Grid>
-            <Grid item>
-              <Typography variant='body1' color='textPrimary'>sdsddsdsdsdsdsdddsddd{contacts.email}</Typography>
+            <Grid item container>
+              <Typography variant='h5' color='textSecondary'>{contacts.email}</Typography>
             </Grid>
           </Grid>
 
-          <Grid item container spacing={3} justify='center' alignItems='center'>
-            <Grid item container xs={1}>
-              <Typography className={classes.fixedHeightContactTitle} variant='h6' color='textPrimary'>Github:</Typography>
+          <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
+            <Grid item container lg={2}>
+              <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>LinkedIn: </Typography>
             </Grid>
-            <Grid item>
-              <Typography variant='body1' color='textPrimary'>sdsddsdsdsdsdsdddsddd{contacts.github}</Typography>
+            <Grid item container>
+              <Typography variant='h5' color='textSecondary'>{contacts.linkedin}</Typography>
             </Grid>
-
           </Grid>
+          
+          <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
+            <Grid item container lg={2}>
+              <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>Github: </Typography>
+            </Grid>
+            <Grid item container>
+              <Typography variant='h5' color='textSecondary'>{contacts.github}</Typography>
+            </Grid>
+          </Grid>
+
 
           {/* //~ ==== message section ==== */}
-          <div style={{ height: '5em' }} />
+          {/* <div style={{ height: '5em' }} />
           <Grid item container direction='column'>
             <Grid item container direction='column'>
               <GridFlex item container>
@@ -79,7 +88,7 @@ function Contacts() {
             <Grid item container justify='flex-end'>
               <Button className={classes.btnSubmit} disableElevation variant='contained'>Submit</Button>
             </Grid>
-          </Grid>
+          </Grid> */}
 
           {/* <Grid item container justify='center'>
           <Typography variant='h4' color='textPrimary'>or</Typography>

@@ -26,12 +26,12 @@ function LargerDisplay() {
         // uniqueTabTitle={'section1'} //~ remove
         anchor={portfolioContent.tabSectionTitles[0].tabTitle}
         bgImg={{ src: require('../assets/images/bgSect1.jpg'), alt: '' }}>
-        <Intro />
+          <Intro />
       </NavTabsWrapper>
       <NavTabsWrapper
         anchor={portfolioContent.tabSectionTitles[1].tabTitle}
         bgImg={{ src: require('../assets/images/bgSect2.jpg'), alt: '' }}>
-        <Container >
+        <Container>
           <div style={{ height: '100vh', paddingBottom: -10 }}>
             <DemoTech />
           </div>
@@ -42,18 +42,18 @@ function LargerDisplay() {
         bgImg={{ src: require('../assets/images//bgSect3.jpg'), alt: '' }}
       >
         <div style={{ height: '100vh' }}> //! take in to account that mobile browsers don'tS vh & vw */
-          <DemoProjects height='100vh' />
+          {/* <DemoProjects height='100vh' /> */}
           {/* //! make BioContacts seciton zIndex greater than this so that this component was under the component it's currently overlapping */}
         </div>
       </NavTabsWrapper>
       <NavTabsWrapper
         anchor={portfolioContent.tabSectionTitles[3].tabTitle}
         bgImg={{ src: require('../assets/images/bgSect3.jpg'), alt: '' }}
-        
+
       >
-          <Container maxWidth='md'>
-            <Contacts />
-          </Container>
+        <Container maxWidth='md'>
+          <Contacts />
+        </Container>
       </NavTabsWrapper>
     </ScrollableTabsWrapper>
   )
