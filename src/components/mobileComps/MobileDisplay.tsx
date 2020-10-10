@@ -10,6 +10,7 @@ import { Menu, HomeSharp } from '@material-ui/icons';
 import Navigator from './Navigator';
 import { GridScreenHeight } from '../../styles/customMaterialUiComp';
 import LandingScreenMobile from './LandingScreenMobile';
+import BottomNav from './layouts/BottomNav';
 
 const MobileBg = withStyles({
   root: {
@@ -35,6 +36,8 @@ function MobileDisplay() {
   const [navModalOpen, setNavModalOpen] = useState(false)
   //* there's unnessesary scroll that needs to be removed by making content layout fit
 
+  const [mobileScreen, setMobileScreen] = useState(1)
+
   const NavigationButtons = () =>
     <Grid container justify='space-between' className={classes.navBtnsContainer}>
       <Link to='/'>
@@ -57,19 +60,28 @@ function MobileDisplay() {
         </Modal>
         <Switch>
           <Route exact path='/'>
-            <MobileHome />
+            <div className='mobileContactsScreen'>
+              <MobileHome />
+              <BottomNav />
+            </div>
           </Route>
           <Route path='/tech-mobile'>
-            <NavigationButtons />
-            <TechPage />
+            <div className='mobileContactsScreen'>
+              <TechPage />
+              <BottomNav />
+            </div>
           </Route>
           <Route path='/contacts-mobile'>
-            <NavigationButtons />
-            <ContactPage />
+            <div className='mobileContactsScreen'>
+              <ContactPage />
+              <BottomNav />
+            </div>
           </Route>
           <Route path='/projects-mobile'>
-            <NavigationButtons />
-            <ProjectsPage />
+            <div className='mobileContactsScreen'>
+              <ProjectsPage />
+              <BottomNav />
+            </div>
           </Route>
         </Switch>
       </Router>

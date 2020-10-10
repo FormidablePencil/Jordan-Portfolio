@@ -1,7 +1,7 @@
 import React, { cloneElement, Children, useState, useEffect } from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import PropTypes from 'prop-types';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, useTheme } from '@material-ui/core';
 import { barColor } from '../styles/themeStyles';
 import darken from '@bit/styled-components.polished.color.darken';
 
@@ -61,6 +61,7 @@ const ScrollableTabsWrapper = (props: any) => {
 
 
 const Navbar = (props) => {
+  const theme = useTheme()
   const { navbarColor, heightOfTabs, extraTopSpace, tabSectionTitles, getNavTabPositioningHelper } = props
   return (
     <div style={{
@@ -89,7 +90,7 @@ const Navbar = (props) => {
           }}
           href={`#${tabSectionTitle}`}>
           <Typography color='textPrimary' variant='body1' style={{
-            backgroundColor: '#63DCB9',
+            backgroundColor: theme.palette.primary.main,
             width: '97%',
             borderRadius: '.35em',
             textAlign: 'center'
@@ -203,11 +204,11 @@ const NavTabsWrapper = (props) => {
         top: heightOfTabs + extraTopSpace,
         background: stickyBackgroundBgColor,
       }}>
-        <div style={{position: 'absolute', zIndex: 1, width: '100vw'}}>
+        <div style={{ position: 'absolute', zIndex: 1, width: '100vw' }}>
           {props.children}
         </div>
         {bgImg &&
-          <img style={{  width: '100vw', height: '100vh', zIndex: -1, objectFit: 'cover' }} src={bgImg.src} alt='' />
+          <img style={{ width: '100vw', height: '100vh', zIndex: -1, objectFit: 'cover' }} src={bgImg.src} alt='' />
         }
       </div>
 

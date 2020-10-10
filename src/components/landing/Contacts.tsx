@@ -1,7 +1,7 @@
 import React from 'react'
 // import { contacts } from '../../constants/staticData'
-import { Grid, Input, Button, Container, TextareaAutosize, makeStyles, Typography } from '@material-ui/core'
-import { GridScreenHeight, GridFlex } from '../../styles/customMaterialUiComp'
+import { Grid, Container, makeStyles, Typography } from '@material-ui/core'
+import { GridScreenHeight } from '../../styles/customMaterialUiComp'
 import { useSelector } from 'react-redux';
 import { rootT } from '../../storeConfig';
 

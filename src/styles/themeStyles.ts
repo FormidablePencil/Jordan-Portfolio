@@ -1,6 +1,5 @@
 import { createMuiTheme, ThemeOptions } from "@material-ui/core";
 import { isMobileScreenDimensions } from "../helperFuncs";
-import { blueGrey } from "@material-ui/core/colors";
 
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
@@ -11,7 +10,6 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   interface ThemeOptions {
     responsiveHeight?: {
       height?: React.CSSProperties['height']
-
     }
   }
 }
@@ -27,6 +25,9 @@ export const theme = createMuiTheme({
     }
   },
   palette: {
+    primary: {
+      main: '#63DCB9',
+    },
     text: {
       primary: '#171717',
       secondary: '#B8DDCE',
