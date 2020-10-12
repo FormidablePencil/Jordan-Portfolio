@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux'
 import { rootT } from '../../storeConfig';
 
 function TechPage() {
-  const { tech } = useSelector((state: rootT) => state.portfolioContent)
-  console.log(tech);
+  const { moreTech } = useSelector((state: rootT) => state.portfolioContent)
   
   return (
     <div>
+      {moreTech.map(tech => 
+      <img key={tech.icon} src={tech.icon} alt={tech.alt} />
+      )}
     </div>
   )
 }
