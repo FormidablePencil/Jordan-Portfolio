@@ -14,7 +14,7 @@ const ScrollableTabsWrapper = (props: any) => {
   const [arrUniqueTabTitles, setArrUniqueTabTitles] = useState<any>([])
 
   const saveTitlesToSourceOfTrue = async (index, title) => {
-    setArrUniqueTabTitles([...arrUniqueTabTitles, { index, title }]) //! Problem is that setState is called too fast multiple times and it only registers the last call.
+    setArrUniqueTabTitles([...arrUniqueTabTitles, { index, title }])
   }
 
   const getNavTabPositioningHelper = ({
@@ -62,7 +62,9 @@ const ScrollableTabsWrapper = (props: any) => {
 
 const Navbar = (props) => {
   const theme = useTheme()
-  const { navbarColor, heightOfTabs, extraTopSpace, tabSectionTitles, getNavTabPositioningHelper } = props
+  const {
+    //  navbarColor,
+     heightOfTabs, extraTopSpace, tabSectionTitles, getNavTabPositioningHelper } = props
   return (
     <div style={{
       zIndex: 19,
@@ -76,8 +78,8 @@ const Navbar = (props) => {
       alignItems: 'flex-end'
     }}>
       {tabSectionTitles.map((tabSectionTitle, index) =>
-        /* //~ pressable btn, standard but also match theme, justified evenly right behind of tabs */
         <AnchorLink
+          key={index}
           style={{
             position: 'absolute',
             width: 130,
@@ -122,18 +124,18 @@ const Navbar = (props) => {
 interface navTabsWrapperT extends scrollableTabsChildrenT {
   index: number,
   anchor, stickyBackgroundBgColor, tabColor, extraTopSpace: number,
-  overrideTabsStyle, uniqueTabTitle: string, arrUniqueTabTitles: {},
+  overrideTabsStyle, uniqueTabTitle?: string, arrUniqueTabTitles: {},
   saveTitlesToSourceOfTrue: Function, bgImg
 }
 const NavTabsWrapper = (props) => {
   const {
     extraTopSpace,
     heightOfTabs,
-    tabColor,
+    // tabColor,
     anchor,
     stickyBackgroundBgColor,
     tabLeftOffset,
-    whereChild,
+    // whereChild,
     overrideTabsStyle,
     uniqueTabTitle,
     index,
@@ -142,7 +144,6 @@ const NavTabsWrapper = (props) => {
   }: navTabsWrapperT = props
 
   const [temporarilyHolding] = useState({ index: index, title: uniqueTabTitle })
-  //~ If no solution found then directly pass data into sourceOfTruth and later I might stumble on a solution.
 
   useEffect(() => {
     saveTitlesToSourceOfTrue(temporarilyHolding.index, temporarilyHolding.title)
@@ -151,7 +152,7 @@ const NavTabsWrapper = (props) => {
 
   const widthOfContent = '100%'
   // const marginTopContent = whereChild === 'first' ? `calc(-100vh + ${heightOfTabs * 2 + extraTopSpace}px` : `calc(-100vh + ${heightOfTabs}px)`
-  const marginTopContent = `calc(-100vh + ${heightOfTabs}px)`
+  // const marginTopContent = `calc(-100vh + ${heightOfTabs}px)`
   const heightOfStickyAbsoluteBackground = `calc(100vh - ${heightOfTabs}px)`
 
   return (
@@ -198,7 +199,7 @@ const NavTabsWrapper = (props) => {
       <div style={{ //sticky background
         zIndex: 3,
         width: widthOfContent,
-        marginBottom: -20,
+        marginBottom: 35,
         height: heightOfStickyAbsoluteBackground,
         position: 'sticky',
         top: heightOfTabs + extraTopSpace,
@@ -241,7 +242,8 @@ const defaultExtraTopSpace = 10
 
 ScrollableTabsWrapper.propTypes = {
   children: PropTypes.any,
-  heightOfTabs: PropTypes.number.isRequired,
+  // heightOfTabs: PropTypes.number.isRequired,
+  heightOfTabs: PropTypes.number,
   overrideTabsStyle: PropTypes.string,
   navbarColor: PropTypes.string,
   extraTopSpace: PropTypes.number,
@@ -268,8 +270,9 @@ NavTabsWrapper.propTypes = {
   children: PropTypes.any.isRequired,
   tabColor: PropTypes.string,
   anchor: PropTypes.string.isRequired,
-  heightOfTabs: PropTypes.string,
-  uniqueTabTitle: PropTypes.string.isRequired,
+  heightOfTabs: PropTypes.number,
+  // uniqueTabTitle: PropTypes.number.isRequired,
+  uniqueTabTitle: PropTypes.string,
 }
 NavTabsWrapper.defaultProps = {
   stickyBackgroundBgColor: barColor,

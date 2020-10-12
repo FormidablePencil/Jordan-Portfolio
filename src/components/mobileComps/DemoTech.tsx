@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import ReactPlayer from 'react-player'
 import TechIcon from '../reusables/TechIcon';
 import { useSpring, config, animated } from 'react-spring';
-import { withStyles, Grid } from '@material-ui/core';
+import { withStyles, Grid, makeStyles } from '@material-ui/core';
 import { GridScreenHeight } from '../../styles/customMaterialUiComp';
-import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { rootT } from '../../storeConfig';
 
 const DemoTech = () => {
+  const classes = useStyles();
   const techStack = useSelector((state: rootT) => state.portfolioContent.tech)
   const slowFadeInVidAnim = { mass: 10, tension: 200, friction: 102 }
   const [iconHoveringOver, setIconHoveringOver] = useState(0)
@@ -48,7 +48,7 @@ const DemoTech = () => {
   return (
     <GridScreenHeight container>
       <GridRelative item>
-        <VidContainer style={toggleVidOpacity}>
+        <animated.div className={classes.vidContainer} style={toggleVidOpacity}>
           <ReactPlayer
             muted={true}
             height='100%'
@@ -56,10 +56,11 @@ const DemoTech = () => {
             playing={true}
             loop={true}
             url={techStack[iconHoveringOver].video} />
-        </VidContainer>
-        <IconContainer style={iconsBlurProps}>
+        </animated.div>
+        <animated.div className={classes.iconContainer} style={iconsBlurProps}>
           {techStack.map((techProps, index) =>
             <TechIcon
+              key={index}
               setIconHoveringOver={setIconHoveringOver}
               techProps={techProps}
               blurIcons={blurIcons}
@@ -67,8 +68,7 @@ const DemoTech = () => {
               index={index}
             />
           )}
-        </IconContainer>
-        {/* </animated.div> */}
+        </animated.div>
       </GridRelative>
     </GridScreenHeight>
   )
@@ -76,12 +76,15 @@ const DemoTech = () => {
 
 export default DemoTech
 
-const VidContainer = styled(animated.div)`
- width: 100%; height: 100%;
- `
-const IconContainer = styled(animated.div)`
-  display: flex; flex-direction: row; position: absolute;
-`
+const useStyles = makeStyles((theme) => ({
+  iconContainer: {
+    display: 'flex', flexDirection: 'row', position: 'absolute',
+  },
+  vidContainer: {
+    width: '100%', height: '100%'
+  }
+}));
+
 const GridRelative = withStyles({
   root: {
     display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100vw',

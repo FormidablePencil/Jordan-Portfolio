@@ -14,13 +14,14 @@ function Navbar() {
       <div className="navbar-inner-container">
         <div className="navTabs">
           {tabTitles.map((title, index) =>
-
             index !== 0 &&
-            <AnchorLink className='navbar-btn' style={{ left: getNavTabPosition(index) }} href={`#${title}`}>{title}</AnchorLink>
+            <AnchorLink
+              key={title}
+              className='navbar-btn' style={{ left: getNavTabPosition(index) }} href={`#${title}`}>{title}</AnchorLink>
           )}
         </div>
         <div className="additional-nav-tabs">
-          <a href='/' className='navbar-btn portfolio-btn' style={{right: '50px'}}>Porfolio</a>
+          <a href='/' className='navbar-btn portfolio-btn' style={{ right: '50px' }}>Porfolio</a>
         </div>
       </div>
     </div>

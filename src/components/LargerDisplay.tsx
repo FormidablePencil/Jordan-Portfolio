@@ -2,9 +2,7 @@ import React from 'react'
 import ScrollableTabsWrapper, { NavTabsWrapper } from './scrollable-tabs'
 import Intro from './landing/Intro';
 import DemoTech from './mobileComps/DemoTech';
-import DemoProjects from './landing/DemoProjects';
 import Contacts from './landing/Contacts';
-import Profile from './mobileComps/Profile';
 import { Container } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { rootT } from '../storeConfig';
@@ -13,6 +11,7 @@ function LargerDisplay() {
   const { portfolioContent } = useSelector((state: rootT) => state)
 
   return (
+    <>
     <ScrollableTabsWrapper
       heightOfTabs={35}
       tabSectionTitles={[
@@ -26,13 +25,13 @@ function LargerDisplay() {
         // uniqueTabTitle={'section1'} //~ remove
         anchor={portfolioContent.tabSectionTitles[0].tabTitle}
         bgImg={{ src: require('../assets/images/bgSect1.jpg'), alt: '' }}>
-          <Intro />
+        <Intro />
       </NavTabsWrapper>
       <NavTabsWrapper
         anchor={portfolioContent.tabSectionTitles[1].tabTitle}
         bgImg={{ src: require('../assets/images/bgSect2.jpg'), alt: '' }}>
         <Container>
-          <div style={{ height: '100vh', paddingBottom: -10 }}>
+          <div style={{ height: '100vh', paddingTop: 15 }}>
             <DemoTech />
           </div>
         </Container>
@@ -52,15 +51,16 @@ function LargerDisplay() {
 
       >
         <Container maxWidth='md'>
-          <Contacts />
+            <Contacts />
         </Container>
       </NavTabsWrapper>
     </ScrollableTabsWrapper>
+    </>
   )
 }
 
 export default LargerDisplay
 
 
-{/* <span>Photo by <a href="https://unsplash.com/@jmckinven?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">James McKinven</a> on <a href="https://unsplash.com/s/photos/video-edit?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */ }
-{/* <span>Photo by <a href="https://unsplash.com/@paramir?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ehud Neuhaus</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */ }
+// {/* <span>Photo by <a href="https://unsplash.com/@jmckinven?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">James McKinven</a> on <a href="https://unsplash.com/s/photos/video-edit?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */ }
+// {/* <span>Photo by <a href="https://unsplash.com/@paramir?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ehud Neuhaus</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */ }

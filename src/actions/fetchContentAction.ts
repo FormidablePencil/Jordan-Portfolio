@@ -7,7 +7,7 @@ const fetchContentAction = () => async dispatch => {
       'Content-Type': 'application/json'
     },
   }
-  const res = await fetch('http://localhost:8080/getcontentdata', payloadFetch)
+  const res = await fetch('https://jordan-portfolio-server.herokuapp.com/getcontentdata', payloadFetch)
   const contentData = await res.json() //update content state
   if (res.status === 200)
     dispatch({ type: SAVE_FETCH_CONTENT, payload: contentData.data })
