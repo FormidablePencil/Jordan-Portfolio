@@ -1,19 +1,19 @@
 
 export const demoTechContent = [
-  {
-    title: 'Adobe Premiere Pro',
-    src: 'https://jordans-assets.s3.us-east-2.amazonaws.com/pr_cc_app_RGB.svg',
-    video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
-    // height: '220px',
-    // width: '220px',
-  },
-  {
-    title: 'Adobe Photoshop',
-    src: 'https://jordans-assets.s3.us-east-2.amazonaws.com/photoshop-mobile.svg',
-    video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
-    // height: '220px',
-    // width: '220px',
-  },
+  // {
+  //   title: 'Adobe Premiere Pro',
+  //   src: 'https://jordans-assets.s3.us-east-2.amazonaws.com/pr_cc_app_RGB.svg',
+  //   video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
+  //   // height: '220px',
+  //   // width: '220px',
+  // },
+  // {
+  //   title: 'Adobe Photoshop',
+  //   src: 'https://jordans-assets.s3.us-east-2.amazonaws.com/photoshop-mobile.svg',
+  //   video: 'https://jordans-assets.s3.us-east-2.amazonaws.com/demoTech.mp4',
+  //   // height: '220px',
+  //   // width: '220px',
+  // },
   // {
   //   title: 'Adobe Photoshop',
   //   src: require('../assets/images/photoshop-mobile.svg'),

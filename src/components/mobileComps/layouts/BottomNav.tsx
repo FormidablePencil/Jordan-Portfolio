@@ -12,17 +12,20 @@ function BottomNav() {
   useEffect(() => {
     if (path === '/') setNavigationValue(0)
     if (path === '/tech-mobile') setNavigationValue(1)
-    if (path === '/contacts-mobile') setNavigationValue(2)
-    if (path === '/projects-mobile') setNavigationValue(3)
+    if (path === '/projects-mobile') setNavigationValue(2)
   }, [path])
 
   const onChangeHandler = (event, newValue) => {
     if (newValue === 0) history.push('/')
     if (newValue === 1) history.push('/tech-mobile')
-    if (newValue === 2) history.push('/contacts-mobile')
-    if (newValue === 3) history.push('/projects-mobile')
+    if (newValue === 2) history.push('/projects-mobile')
     setNavigationValue(newValue);
   }
+
+  //tech icons, creative icons or images.
+  //colorful folder icon
+  //icon of colorful person
+
 
   return (
     <>
@@ -32,10 +35,10 @@ function BottomNav() {
         showLabels
         className={classes.bottomNavigation}
       >
-        <BottomNavigationAction label="Home" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Tech" icon={<RestoreIcon />} />
         <BottomNavigationAction label="Contacts" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Tech" icon={<RestoreIcon />} />
         <BottomNavigationAction label="Projects" icon={<RestoreIcon />} />
+        {/* <BottomNavigationAction label="Contacts" icon={<RestoreIcon />} /> */}
       </BottomNavigation>
     </>
   )

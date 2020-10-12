@@ -21,7 +21,7 @@ export const theme = createMuiTheme({
       color: '#D9D9D9',
     },
     body2: {
-      fontSize: '1.3em',
+      fontSize: '1.2em',
     }
   },
   palette: {

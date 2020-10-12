@@ -4,6 +4,8 @@ import TechIcon from '../reusables/TechIcon';
 import { demoTechContent } from '../../constants/staticData';
 import { GridFlex } from '../../styles/customMaterialUiComp';
 import { calcIconZoomAndMargin } from '../../helperFuncs';
+import { useSelector } from 'react-redux';
+import { rootT } from '../../storeConfig';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,11 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TechStack() {
   const classes = useStyles();
-  //tech icons, creative icons or images.
-  //colorful folder icon
-  //icon of colorful person
-
-
+  const {tech} = useSelector((state: rootT) => state.portfolioContent)
   const blurIcons = () => { }
 
   return (
@@ -27,11 +25,11 @@ function TechStack() {
         <Typography variant='h3' color='textPrimary'>Tech Stack</Typography>
       </Grid>
       <Grid item container direction='row' justify='center'>
-        {demoTechContent.map((iconsProps, index) =>
+        {tech.map((item, index) =>
           <TechIcon
             zoomOff={true}
             key={index}
-            techProps={iconsProps}
+            techProps={item}
             blurIcons={blurIcons}
             index={index}
             indexProps={calcIconZoomAndMargin(index)}

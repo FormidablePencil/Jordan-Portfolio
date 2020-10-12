@@ -5,7 +5,6 @@ import { theme } from '../../styles/themeStyles';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import TechPage from './TechPage-mobile';
 import ProjectsPage from './ProjectsPage-mobile';
-import ContactPage from './ContactPage-mobile';
 import Navigator from './Navigator';
 import { GridScreenHeight } from '../../styles/customMaterialUiComp';
 import LandingScreenMobile from './LandingScreenMobile';
@@ -43,12 +42,12 @@ function MobileDisplay() {
               <BottomNav />
             </div>
           </Route>
-          <Route path='/contacts-mobile'>
+          {/* <Route path='/contacts-mobile'>
             <div className='mobileContactsScreen'>
               <ContactPage />
               <BottomNav />
             </div>
-          </Route>
+          </Route> */}
           <Route path='/projects-mobile'>
             <div className='mobileContactsScreen'>
               <ProjectsPage />

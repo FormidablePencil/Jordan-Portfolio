@@ -36,20 +36,22 @@ function TechIcon({ index, indexProps, techProps, blurIcons, zoomOff, setIconHov
     <div
       onMouseEnter={() => onMouseEnter()}
       onMouseLeave={() => onMouseLeave()}
-      style={{ marginLeft, marginRight }}
     >
-      <animated.div
-        style={{ ...iconScaleProps }}
-      >
-        <LazyLoadImage
-          // className={`tech-icon ${zoomLevelClassName}`}
-          alt={techProps.title}
-          src={techProps.icon}
-          height={80}
-          width={80}
-          effect='blur'
-        />
-      </animated.div>
+      <div style={{ marginLeft, marginRight }}>
+        <animated.div
+
+          style={{ ...iconScaleProps }}
+        >
+          <LazyLoadImage
+            // className={`tech-icon ${zoomLevelClassName}`}
+            alt={techProps.alt}
+            src={techProps.icon}
+            height={80}
+            width={80}
+            effect='blur'
+          />
+        </animated.div>
+      </div>
     </div>
   )
 }

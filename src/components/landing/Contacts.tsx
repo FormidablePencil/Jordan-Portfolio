@@ -22,17 +22,19 @@ const useStyles = makeStyles((theme) => ({
   btnEmail: {
     margin: '1em'
   },
-  compensateForBtnOverSection: {
+  container: {
+    maxWidth: '35em',
     marginTop: '2em'
   },
   fixedHeightContactTitle: {
     width: '3em',
+  },
+  customFont: {
+    fontSize: '1.2em'
   }
 }));
 
 function Contacts() {
-  const { contacts } = useSelector((state: rootT) => state.portfolioContent)
-
   const classes = useStyles();
 
   return (
@@ -41,63 +43,71 @@ function Contacts() {
         className={classes.paddingVertical}
         container direction='column' alignItems='center' justify='space-around' wrap='nowrap'>
 
-        <Grid className={classes.compensateForBtnOverSection}
-          item container direction='column' style={{ width: 300 }}>
+        <ContactInfo />
 
-          {/* //~ ==== links ==== */}
-          <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
-            <Grid item container xl={2}>
-              <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>Email:</Typography>
-            </Grid>
-            <Grid item container>
-              <Typography variant='h5' color='textSecondary'>{contacts.email}</Typography>
-            </Grid>
-          </Grid>
-
-          <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
-            <Grid item container xl={2}>
-              <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>LinkedIn: </Typography>
-            </Grid>
-            <Grid item container>
-              <Typography variant='h5' color='textSecondary'>{contacts.linkedin}</Typography>
-            </Grid>
-          </Grid>
-          
-          <Grid item container spacing={3} alignItems='center' wrap='nowrap'>
-            <Grid item container xl={2}>
-              <Typography className={classes.fixedHeightContactTitle} variant='h5' color='textSecondary'>Github: </Typography>
-            </Grid>
-            <Grid item container>
-              <Typography variant='h5' color='textSecondary'>{contacts.github}</Typography>
-            </Grid>
-          </Grid>
-
-
-          {/* //~ ==== message section ==== */}
-          {/* <div style={{ height: '5em' }} />
-          <Grid item container direction='column'>
-            <Grid item container direction='column'>
-              <GridFlex item container>
-                <Input className={classes.inputStyles} placeholder='Name' />
-              </GridFlex>
-              <GridFlex item container>
-                <Input className={classes.inputStyles} placeholder='Email' />
-              </GridFlex>
-            </Grid>
-            <TextareaAutosize className={classes.textAreaMargin} rows='6' />
-            <Grid item container justify='flex-end'>
-              <Button className={classes.btnSubmit} disableElevation variant='contained'>Submit</Button>
-            </Grid>
-          </Grid> */}
-
-          {/* <Grid item container justify='center'>
-          <Typography variant='h4' color='textPrimary'>or</Typography>
-        </Grid> */}
-
-          {/* <Button className={classes.btnEmail} disableElevation variant='contained'>Redirect to email</Button> */}
-        </Grid>
       </GridScreenHeight>
     </Container>
+  )
+}
+
+export const ContactInfo = () => {
+  const classes = useStyles();
+  const { contacts } = useSelector((state: rootT) => state.portfolioContent)
+
+  const contactsData = [
+    {
+      title: 'Email',
+      data: contacts.email
+    },
+    {
+      title: 'LinkedIn',
+      data: contacts.linkedin
+    },
+    {
+      title: 'github',
+      data: contacts.github
+    },
+  ]
+
+  return (
+    <Grid className={classes.container}
+      item container direction='column'>
+
+      {/* //~ ==== links ==== */}
+      {contactsData.map(item =>
+        < Grid item container spacing={3} alignItems='center' wrap='nowrap'>
+          <Grid item container xl={2}>
+            <Typography className={`${classes.fixedHeightContactTitle} ${classes.customFont}`} variant='h5' color='textSecondary'>{item.title}: </Typography>
+          </Grid>
+          <Grid item container wrap='nowrap'>
+            <Typography variant='body2' color='textSecondary' noWrap>{item.data}</Typography>
+          </Grid>
+        </Grid>
+      )}
+
+      {/* //~ ==== message section ==== */}
+      {/* <div style={{ height: '5em' }} />
+    <Grid item container direction='column'>
+      <Grid item container direction='column'>
+        <GridFlex item container>
+          <Input className={classes.inputStyles} placeholder='Name' />
+        </GridFlex>
+        <GridFlex item container>
+          <Input className={classes.inputStyles} placeholder='Email' />
+        </GridFlex>
+      </Grid>
+      <TextareaAutosize className={classes.textAreaMargin} rows='6' />
+      <Grid item container justify='flex-end'>
+        <Button className={classes.btnSubmit} disableElevation variant='contained'>Submit</Button>
+      </Grid>
+    </Grid> */}
+
+      {/* <Grid item container justify='center'>
+    <Typography variant='h4' color='textPrimary'>or</Typography>
+  </Grid> */}
+
+      {/* <Button className={classes.btnEmail} disableElevation variant='contained'>Redirect to email</Button> */}
+    </Grid >
   )
 }
 

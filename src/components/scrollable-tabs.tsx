@@ -205,11 +205,11 @@ const NavTabsWrapper = (props) => {
         top: heightOfTabs + extraTopSpace,
         background: stickyBackgroundBgColor,
       }}>
-        <div style={{ position: 'absolute', zIndex: 1, width: '100vw' }}>
+        <div style={{ position: 'absolute', zIndex: 1, width: '100%' }}>
           {props.children}
         </div>
         {bgImg &&
-          <img style={{ width: '100vw', height: '100vh', zIndex: -1, objectFit: 'cover' }} src={bgImg.src} alt='' />
+          <img style={{ width: '100%', height: '100vh', zIndex: -1, objectFit: 'cover' }} src={bgImg.src} alt='' />
         }
       </div>
 
