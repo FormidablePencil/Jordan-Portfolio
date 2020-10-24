@@ -6,55 +6,57 @@ import Contacts from './landing/Contacts';
 import { Container } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { rootT } from '../storeConfig';
+import { ExampleComponent, CrystalParallaxEffectGui } from 'parallax-effect';
 
 function LargerDisplay() {
   const { portfolioContent } = useSelector((state: rootT) => state)
 
   return (
     <>
-    <ScrollableTabsWrapper
-      heightOfTabs={35}
-      tabSectionTitles={[
-        portfolioContent.tabSectionTitles[0].tabTitle,
-        portfolioContent.tabSectionTitles[1].tabTitle,
-        portfolioContent.tabSectionTitles[2].tabTitle,
-        portfolioContent.tabSectionTitles[3].tabTitle,
-      ]}
-    >
-      <NavTabsWrapper
-        // uniqueTabTitle={'section1'} //~ remove
-        anchor={portfolioContent.tabSectionTitles[0].tabTitle}
-        bgImg={{ src: require('../assets/images/bgSect1.jpg'), alt: '' }}>
-        <Intro />
-      </NavTabsWrapper>
-      <NavTabsWrapper
-        anchor={portfolioContent.tabSectionTitles[1].tabTitle}
-        bgImg={{ src: require('../assets/images/bgSect2.jpg'), alt: '' }}>
-        <Container>
-          <div style={{ height: '100vh', paddingTop: 15 }}>
-            <DemoTech />
-          </div>
-        </Container>
-      </NavTabsWrapper>
-      <NavTabsWrapper
-        anchor={portfolioContent.tabSectionTitles[2].tabTitle}
-        bgImg={{ src: require('../assets/images//bgSect3.jpg'), alt: '' }}
+      <ScrollableTabsWrapper
+        heightOfTabs={35}
+        tabSectionTitles={[
+          portfolioContent.tabSectionTitles[0].tabTitle,
+          portfolioContent.tabSectionTitles[1].tabTitle,
+          portfolioContent.tabSectionTitles[2].tabTitle,
+          portfolioContent.tabSectionTitles[3].tabTitle,
+        ]}
       >
-        <div style={{ height: '100vh' }}> //! take in to account that mobile browsers don'tS vh & vw */
+        <NavTabsWrapper
+          // uniqueTabTitle={'section1'} //~ remove
+          anchor={portfolioContent.tabSectionTitles[0].tabTitle}
+          bgImg={{ src: require('../assets/images/bgSect1.jpg'), alt: '' }}>
+          <Intro />
+        </NavTabsWrapper>
+        <NavTabsWrapper
+          anchor={portfolioContent.tabSectionTitles[1].tabTitle}
+          bgImg={{ src: require('../assets/images/bgSect2.jpg'), alt: '' }}>
+          <Container>
+            <div style={{ height: '100vh', paddingTop: 15 }}>
+              <DemoTech />
+            </div>
+          </Container>
+        </NavTabsWrapper>
+        <NavTabsWrapper
+          anchor={portfolioContent.tabSectionTitles[2].tabTitle}
+          bgImg={{ src: require('../assets/images//bgSect3.jpg'), alt: '' }}
+        >
+          <div style={{ height: '100vh' }}> //! take in to account that mobile browsers don'tS vh & vw */
           {/* <DemoProjects height='100vh' /> */}
-          {/* //! make BioContacts seciton zIndex greater than this so that this component was under the component it's currently overlapping */}
-        </div>
-      </NavTabsWrapper>
-      <NavTabsWrapper
-        anchor={portfolioContent.tabSectionTitles[3].tabTitle}
-        bgImg={{ src: require('../assets/images/bgSect3.jpg'), alt: '' }}
+            {/* //! make BioContacts seciton zIndex greater than this so that this component was under the component it's currently overlapping */}
+          </div>
+        </NavTabsWrapper>
+        <NavTabsWrapper
+          anchor={portfolioContent.tabSectionTitles[3].tabTitle}
+          bgImg={{ src: require('../assets/images/bgSect3.jpg'), alt: '' }}
 
-      >
-        <Container maxWidth='md'>
+        >
+          <Container maxWidth='md'>
             <Contacts />
-        </Container>
-      </NavTabsWrapper>
-    </ScrollableTabsWrapper>
+            <CrystalParallaxEffectGui />
+          </Container>
+        </NavTabsWrapper>
+      </ScrollableTabsWrapper>
     </>
   )
 }

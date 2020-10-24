@@ -31,7 +31,7 @@ const ScrollableTabsWrapper = (props: any) => {
     } else if (children.length - 1 === index) {
       whereChild = 'last'
     }
-    return cloneElement<scrollableTabsChildrenT>(child, { //was working on seting t
+    return cloneElement<scrollableTabsChildrenT>(child, { 
       index,
       extraTopSpace,
       whereChild,
