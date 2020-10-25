@@ -1,7 +1,6 @@
 import React from 'react'
 import { Grid, Typography, makeStyles } from '@material-ui/core'
 import TechIcon from '../reusables/TechIcon';
-import { demoTechContent } from '../../constants/staticData';
 import { GridFlex } from '../../styles/customMaterialUiComp';
 import { calcIconZoomAndMargin } from '../../helperFuncs';
 import { useSelector } from 'react-redux';

@@ -26,7 +26,7 @@ export const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: '#63DCB9',
+      main: '#4577AC',
     },
     text: {
       primary: '#171717',
@@ -38,4 +38,7 @@ export const theme = createMuiTheme({
   },
 })
 
-export const barColor = '#2E3D45'
+export const barColor = '#103460'
+export const navbarColor = '#154782'
+export const regNavBtns = '#2478DD'
+export const resumeBtnColor = '#79C9FF'

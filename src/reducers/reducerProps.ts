@@ -1,4 +1,4 @@
-import { crystalParallaxT, parallaxDefaults } from "../constants/defaultRawCrystalData"
+import { parallaxDefaults } from "../constants/defaultRawCrystalData"
 
 export const pfcDefaults = {
   tabSectionTitles: [

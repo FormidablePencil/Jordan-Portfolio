@@ -2,7 +2,7 @@ import React, { cloneElement, Children, useState, useEffect } from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import PropTypes from 'prop-types';
 import { Typography, Button, useTheme } from '@material-ui/core';
-import { barColor } from '../styles/themeStyles';
+import { barColor, resumeBtnColor } from '../styles/themeStyles';
 import darken from '@bit/styled-components.polished.color.darken';
 import { tabSectionTitles } from './LargerDisplay';
 
@@ -70,7 +70,7 @@ const ScrollableTabsWrapper = (props: any) => {
 const Navbar = (props) => {
   const theme = useTheme()
   const {
-    //  navbarColor,
+     navbarColor,
      heightOfTabs, extraTopSpace, tabSectionTitles, getNavTabPositioningHelper } = props
   return (
     <div style={{
@@ -79,7 +79,7 @@ const Navbar = (props) => {
       height: heightOfTabs + extraTopSpace,
       width: '100%',
       // backgroundColor: navbarColor,
-      background: '#3D515B',
+      background: navbarColor,
       // background: 'linear-gradient(175deg, rgba(30,55,75,1) 0%, rgba(39,77,108,1) 12%)',
       display: 'flex',
       alignItems: 'flex-end'
@@ -98,7 +98,7 @@ const Navbar = (props) => {
             justifyContent: 'center'
           }}
           href={`#${item.tabTitle}`}>
-          <Typography color='textPrimary' variant='body1' style={{
+          <Typography color='textSecondary' variant='body1' style={{
             backgroundColor: theme.palette.primary.main,
             width: '97%',
             borderRadius: '.35em',
@@ -119,7 +119,7 @@ const Navbar = (props) => {
           display: 'flex',
           fontSize: '1em',
           justifyContent: 'center',
-          backgroundColor: '#B8DDCE',
+          backgroundColor: resumeBtnColor,
         }}
       >
         Resume

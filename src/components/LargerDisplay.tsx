@@ -7,12 +7,13 @@ import { Container } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { rootT } from '../storeConfig';
 import { CrystalParallax } from 'parallax-effect-crystals';
+import { navbarColor } from '../styles/themeStyles';
 
 export const tabSectionTitles = [
-  { tabTitle: 'a' },
-  { tabTitle: 'a2' },
-  { tabTitle: 'a23' },
-  { tabTitle: 'a21' },
+  { tabTitle: 'Home' },
+  { tabTitle: 'Tech' },
+  { tabTitle: 'Projects' },
+  { tabTitle: 'contacts' },
 ]
 
 function LargerDisplay() {
@@ -21,6 +22,7 @@ function LargerDisplay() {
   return (
     <>
       <ScrollableTabsWrapper
+      navbarColor={navbarColor}
         heightOfTabs={35}
         tabSectionTitles={[
           tabSectionTitles[0].tabTitle,
