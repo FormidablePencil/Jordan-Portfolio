@@ -9,12 +9,16 @@ import React, { useEffect } from 'react'
 import MobileDisplay from '../components/mobileComps/MobileDisplay';
 import LargerDisplay from '../components/LargerDisplay';
 import { useMediaQuery } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import fetchContentAction from '../actions/fetchContentAction'
+import { CrystalParallax } from 'parallax-effect-crystals';
+import { rootT } from '../storeConfig';
+
 
 function Landing() {
   const matches = useMediaQuery('(max-width:800px)');
   const dispatch = useDispatch()
+  const { rawCrystalData } = useSelector((state: rootT) => state)
 
 
   useEffect(() => {

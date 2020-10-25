@@ -49,21 +49,21 @@ function LargerDisplay() {
           bgImg={{ src: require('../assets/images//bgSect3.jpg'), alt: '' }}
         >
 
-          <Container maxWidth='md'>
+          <div>
+            <CrystalParallax
+              withGui={false}
+              pulledRawCrystalData={rawCrystalData} />
             {/* <DemoProjects height='100vh' /> */}
             {/* //! make BioContacts seciton zIndex greater than this so that this component was under the component it's currently overlapping */}
 
-          </Container>
+          </div>
 
         </NavTabsWrapper>
         <NavTabsWrapper
           anchor={tabSectionTitles[3].tabTitle}
           bgImg={{ src: require('../assets/images/bgSect3.jpg'), alt: '' }}>
-          <Container maxWidth='md'>
+          <Container maxWidth='md' style={{ overflowY: 'scroll' }}>
             <Contacts />
-            <CrystalParallax
-              withGui={false}
-              pulledRawCrystalData={rawCrystalData} />
           </Container>
         </NavTabsWrapper>
       </ScrollableTabsWrapper>

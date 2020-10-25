@@ -19,11 +19,11 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <CrystalParallaxProvider>
-          <BrowserRouter>
+        <BrowserRouter>
+          <CrystalParallaxProvider>
             <Landing />
-          </BrowserRouter>
-        </CrystalParallaxProvider>
+          </CrystalParallaxProvider>
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   );
