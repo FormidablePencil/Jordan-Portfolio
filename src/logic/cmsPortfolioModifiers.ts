@@ -1,4 +1,4 @@
-import { pfcDefaults } from "../reducers/portfolioContentReducer"
+import { pfcDefaults } from "../reducers/reducerProps"
 
 const cmsPortfolioModifiers = {
   onChangeValue: (payload, state) => {

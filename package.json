@@ -16,7 +16,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
     "node-sass": "^4.14.1",
-    "parallax-effect": "https://github.com/FormidablePencil/parallax-effect-crystals",
+    "parallax-effect-crystals": "https://github.com/FormidablePencil/parallax-effect-crystals",
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^16.13.1",

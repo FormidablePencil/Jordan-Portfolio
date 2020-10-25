@@ -4,18 +4,23 @@ import PropTypes from 'prop-types';
 import { Typography, Button, useTheme } from '@material-ui/core';
 import { barColor } from '../styles/themeStyles';
 import darken from '@bit/styled-components.polished.color.darken';
+import { tabSectionTitles } from './LargerDisplay';
+
+
 
 interface scrollableTabsChildrenT {
   heightOfTabs, tabLeftOffset, whereChild?: string, extraTopSpace: number, index,
   overrideTabsStyle: {}, saveTitlesToSourceOfTrue: Function,
 }
 const ScrollableTabsWrapper = (props: any) => {
-  const { children, navbarColor, heightOfTabs, tabLeftOfsetBy, extraTopSpace, overrideTabsStyle, tabSectionTitles } = props
+  const { children, navbarColor, heightOfTabs, tabLeftOfsetBy, extraTopSpace, overrideTabsStyle } = props
   const [arrUniqueTabTitles, setArrUniqueTabTitles] = useState<any>([])
 
+  
   const saveTitlesToSourceOfTrue = async (index, title) => {
     setArrUniqueTabTitles([...arrUniqueTabTitles, { index, title }])
   }
+
 
   const getNavTabPositioningHelper = ({
     index, tabStartingValue = defaultTabStartingValue, tabsSpaceApart = defaultTabsSpaceApart,
@@ -23,6 +28,7 @@ const ScrollableTabsWrapper = (props: any) => {
     if (index === 0) return tabStartingValue
     else return tabsSpaceApart * index + tabStartingValue
   }
+
 
   const childrenWithAdditionalProps = Children.map(children, (child, index) => {
     let whereChild = ''
@@ -41,6 +47,7 @@ const ScrollableTabsWrapper = (props: any) => {
       saveTitlesToSourceOfTrue,
     });
   });
+  
 
   return (
     <div>
@@ -77,7 +84,7 @@ const Navbar = (props) => {
       display: 'flex',
       alignItems: 'flex-end'
     }}>
-      {tabSectionTitles.map((tabSectionTitle, index) =>
+      {tabSectionTitles.map((item, index) =>
         <AnchorLink
           key={index}
           style={{
@@ -90,14 +97,14 @@ const Navbar = (props) => {
             fontSize: '1em',
             justifyContent: 'center'
           }}
-          href={`#${tabSectionTitle}`}>
+          href={`#${item.tabTitle}`}>
           <Typography color='textPrimary' variant='body1' style={{
             backgroundColor: theme.palette.primary.main,
             width: '97%',
             borderRadius: '.35em',
             textAlign: 'center'
           }}>
-            {tabSectionTitle}
+            {item.tabTitle}
           </Typography>
         </AnchorLink>
       )}

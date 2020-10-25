@@ -9,7 +9,6 @@ import Navigator from './Navigator';
 import { GridScreenHeight } from '../../styles/customMaterialUiComp';
 import LandingScreenMobile from './LandingScreenMobile';
 import BottomNav from './layouts/BottomNav';
-import { ExampleComponent } from 'parallax-effect';
 
 const MobileBg = withStyles({
   root: {

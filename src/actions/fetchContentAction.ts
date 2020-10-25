@@ -1,4 +1,5 @@
-import { SAVE_FETCH_CONTENT } from './constants'
+import { parallaxDefaults } from '../constants/defaultRawCrystalData'
+import { FETCHED_PARALLAX_CRYSTAL_DATA, SAVE_FETCH_CONTENT } from './constants'
 
 const fetchContentAction = () => async dispatch => {
   const payloadFetch = {
@@ -7,10 +8,16 @@ const fetchContentAction = () => async dispatch => {
       'Content-Type': 'application/json'
     },
   }
-  const res = await fetch('https://jordan-portfolio-server.herokuapp.com/getcontentdata', payloadFetch)
-  const contentData = await res.json() //update content state
-  if (res.status === 200)
-    dispatch({ type: SAVE_FETCH_CONTENT, payload: contentData.data })
+
+  const resContentData = await fetch('https://jordan-portfolio-server.herokuapp.com/getcontentdata', payloadFetch)
+  interface contentDataT { data: { cmsPortfolioContent, rawCrystalData } }
+  const contentData: contentDataT = await resContentData.json() //update content state
+
+
+  if (resContentData.status === 200) {
+    dispatch({ type: SAVE_FETCH_CONTENT, payload: contentData.data.cmsPortfolioContent })
+    dispatch({ type: FETCHED_PARALLAX_CRYSTAL_DATA, payload: contentData.data.rawCrystalData })
+  }
 }
 
 export default fetchContentAction

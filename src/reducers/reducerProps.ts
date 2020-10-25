@@ -1,3 +1,5 @@
+import { crystalParallaxT, parallaxDefaults } from "../constants/defaultRawCrystalData"
+
 export const pfcDefaults = {
   tabSectionTitles: [
     {
@@ -29,6 +31,7 @@ export const pfcDefaults = {
   photoshop: { url: '', alt: '' },
   bio: { title: '', paragraph: '' },
   contacts: { email: '', github: '', linkedin: '' },
+  rawCrystalData: parallaxDefaults
 }
 
 export const initialPortfolioContent: portfolioContentT = {
@@ -39,7 +42,7 @@ export const initialPortfolioContent: portfolioContentT = {
   moreTech: [pfcDefaults.moreTech],
   photoshop: [pfcDefaults.photoshop],
   bio: pfcDefaults.bio,
-  contacts: pfcDefaults.contacts
+  contacts: pfcDefaults.contacts,
 }
 
 export interface portfolioContentT {
@@ -83,4 +86,5 @@ export interface portfolioContentT {
   contacts: {
     email: string, github: string, linkedin: string
   }
+  // all of this is static and pulled from db
 }
