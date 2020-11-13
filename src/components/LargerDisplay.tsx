@@ -22,7 +22,7 @@ function LargerDisplay() {
   return (
     <>
       <ScrollableTabsWrapper
-      navbarColor={navbarColor}
+        navbarColor={navbarColor}
         heightOfTabs={35}
         tabSectionTitles={[
           tabSectionTitles[0].tabTitle,
@@ -41,7 +41,7 @@ function LargerDisplay() {
           anchor={tabSectionTitles[1].tabTitle}
           bgImg={{ src: require('../assets/images/bgSect2.jpg'), alt: '' }}>
           <Container>
-            <div style={{ height: '100vh', paddingTop: 15 }}>
+            <div style={{ height: '100vh', paddingTop: 15, zIndex: -3,  }}>
               <DemoTech />
             </div>
           </Container>
@@ -51,7 +51,7 @@ function LargerDisplay() {
           bgImg={{ src: require('../assets/images//bgSect3.jpg'), alt: '' }}
         >
 
-          <div>
+          <div style={{ zIndex: -3 }}>
             <CrystalParallax
               withGui={false}
               pulledRawCrystalData={rawCrystalData} />
