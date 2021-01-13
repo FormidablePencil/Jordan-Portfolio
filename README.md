@@ -17,7 +17,6 @@ parallax-effect-crystals package that I've created you can find here: https://gi
 
 - Mongo <img src="https://i.ibb.co/mqJXvJq/mongodb.png" width="20" title="">
 - Express <img src="https://i.ibb.co/CJfJN1D/express-Logo.png" width="20" title="">
-- Node <img src="https://i.ibb.co/Pm9X8Jq/Node.png" width="20" title="">
 - TypeScript <img src="https://i.ibb.co/RBfMh8f/typescript.png" width="20" title="">
 
 Server repo code can be found here: https://github.com/FormidablePencil/jordans-portfolio-server/
