@@ -6,6 +6,8 @@ parallax-effect-crystals package that I've created you can find here: https://gi
 
 ### Client
 
+Site hosted on netlify: https://jordan-portfolio.netlify.app
+
 - React <img src="https://i.ibb.co/nb965ST/react-Logo.png" width="20" title="">
 - Redux <img src="https://i.ibb.co/dbQkwZM/redux.png" width="20" title="">
 - TypeScript <img src="https://i.ibb.co/RBfMh8f/typescript.png" width="20" title="">
@@ -19,7 +21,7 @@ parallax-effect-crystals package that I've created you can find here: https://gi
 - Express <img src="https://i.ibb.co/CJfJN1D/express-Logo.png" width="20" title="">
 - TypeScript <img src="https://i.ibb.co/RBfMh8f/typescript.png" width="20" title="">
 
-Server repo code can be found here: https://github.com/FormidablePencil/jordans-portfolio-server/
+Server repo code can be found here: https://github.com/FormidablePencil/jordans-portfolio-server
 
 ### Cms 
 
@@ -28,6 +30,6 @@ Server repo code can be found here: https://github.com/FormidablePencil/jordans-
 - TypeScript <img src="https://i.ibb.co/RBfMh8f/typescript.png" width="20" title="">
 - Styled components <img src="https://i.ibb.co/GdtGT3Y/styled-Components.png" width="20" title="">
 
-Cms repo code can be found here: https://github.com/FormidablePencil/cms-jordan-portfolio/
+Cms repo code can be found here: https://github.com/FormidablePencil/cms-jordan-portfolio
 
 Cms hosted on netlify: https://cms-pf.netlify.app/
