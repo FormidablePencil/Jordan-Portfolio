@@ -1,0 +1,3 @@
+when pressing on nav buttons it'll jump down a specfic vh value.
+
+
