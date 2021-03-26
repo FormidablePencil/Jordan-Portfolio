@@ -1,3 +1,3 @@
-when pressing on nav buttons it'll jump down a specfic vh value.
-
+- when pressing on nav buttons it'll jump down a specfic vh value.
+- where did the parallaxing crystals went?
 

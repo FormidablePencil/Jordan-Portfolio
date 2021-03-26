@@ -58,11 +58,12 @@ function LargerDisplay() {
           anchor={tabSectionTitles[2].tabTitle}
           bgImg={{ src: 'https://image.freepik.com/free-vector/gradient-geometric-shapes-dark-background_23-2148433902.jpg', alt: "" }}
         >
-          <div style={{ zIndex: -3 }}>
-            <CrystalParallax
-              withGui={false}
-              pulledRawCrystalData={rawCrystalData}
-            />
+          <div style={{ position: 'absolute', zIndex: -3, height: 3000, overflowY: 'scroll'}}>
+      <div style={{height: 3000, width: 100, backgroundColor: 'orange'}}></div>
+            {/* <CrystalParallax */}
+            {/*   withGui={false} */}
+            {/*   pulledRawCrystalData={rawCrystalData} */}
+            {/* /> */}
             {/* <DemoProjects height='100vh' /> */}
             {/* //! make BioContacts seciton zIndex greater than this so that this component was under the component it's currently overlapping */}
           </div>
